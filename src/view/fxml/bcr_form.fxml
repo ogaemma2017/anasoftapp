@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" styleClass="lcca-pv-text-area" stylesheets="@../css/ui.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.LccaPvController">
+   <children>
+      <AnchorPane layoutX="47.0" layoutY="69.0" prefHeight="613.0" prefWidth="1260.0" style="-fx-background-color: #eeeeee;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <AnchorPane layoutX="130.0" layoutY="-14.0" prefHeight="50.0" prefWidth="1260.0" style="-fx-background-color: #270101;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="449.0" prefWidth="400.0" text="BCR OF DIESEL GENERATOR" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Separator layoutY="165.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <AnchorPane layoutX="64.0" layoutY="146.0" prefHeight="388.0" prefWidth="1157.0">
+               <children>
+                  <HBox layoutX="120.0" layoutY="19.0" prefHeight="290.0" prefWidth="934.0" spacing="50.0">
+                     <children>
+                        <AnchorPane prefHeight="215.0" prefWidth="468.0">
+                           <children>
+                              <VBox layoutX="-4.0" layoutY="33.0" prefHeight="200.0" prefWidth="472.0" spacing="20.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <JFXTextField fx:id="productionTextField" focusColor="#570404" labelFloat="true" prefWidth="250.0" promptText="Production">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="adminExpensesTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="10.0" prefWidth="250.0" promptText="Administrative Expenses">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="researchTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="38.0" prefWidth="250.0" promptText="Research">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="maintenanceTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="66.0" prefWidth="250.0" promptText="Maintenance">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="taxpaymentTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="94.0" prefWidth="250.0" promptText="Tax Payment">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="totalCostTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="262.0" prefWidth="250.0" promptText="Total Cost">
+                                       <font>
+                                          <Font name="System Bold Italic" size="16.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="215.0" prefWidth="468.0">
+                           <children>
+                              <VBox layoutX="-4.0" layoutY="33.0" prefHeight="200.0" prefWidth="472.0" spacing="20.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <JFXTextField fx:id="governmentGrantTextField" focusColor="#570404" labelFloat="true" prefWidth="250.0" promptText="Governemt grant">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="governmentSubsidiesTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="10.0" prefWidth="250.0" promptText="Governement subsidies">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="investorFundTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="38.0" prefWidth="250.0" promptText="Investors fund">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="productionRevenueTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="66.0" prefWidth="250.0" promptText="Production revenue">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="incomeTaxBenefitTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="94.0" prefWidth="250.0" promptText="Income tax benefit">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="totalBenefitTextField" focusColor="#570404" labelFloat="true" layoutX="10.0" layoutY="262.0" prefWidth="250.0" promptText="Total Benefit">
+                                       <font>
+                                          <Font name="System Bold Italic" size="16.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <JFXButton layoutX="611.0" layoutY="316.0" onAction="#findTotalBenefit" prefHeight="40.0" prefWidth="445.0" style="-fx-background-color: #270101;" text="Find" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="117.0" layoutY="315.0" onAction="#findTotalCost" prefHeight="40.0" prefWidth="445.0" style="-fx-background-color: #270101;" text="Find" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <Label layoutX="185.0" layoutY="137.0" text="COSTS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="discountTextField" focusColor="#4d0707" labelFloat="true" layoutX="672.0" layoutY="70.0" prefWidth="250.0" promptText="Discount">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="673.0" layoutY="137.0" text="BENEFITS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="bcrInPresentWorkValueTextField" alignment="CENTER" focusColor="#570404" labelFloat="true" layoutX="324.0" layoutY="522.0" prefHeight="35.0" prefWidth="540.0" promptText="BCR IN PRESENT WORK VALUE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton layoutX="324.0" layoutY="560.0" onAction="#findBCRinPresentWorkValue" prefHeight="40.0" prefWidth="541.0" style="-fx-background-color: #270101;" text="Find" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXComboBox fx:id="yearsCombo" focusColor="#4d0707" labelFloat="true" layoutX="181.0" layoutY="70.0" prefHeight="30.0" prefWidth="167.0" promptText="Years" style="-fx-font-size: 14;" />
+         </children>
+      </AnchorPane>
+      <JFXButton layoutX="41.0" layoutY="7.0" text="Back" textFill="#033110">
+         <graphic>
+            <FontAwesomeIconView fill="#270101" glyphName="ARROW_CIRCLE_ALT_LEFT" size="30.0" />
+         </graphic>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,0 +1,17 @@
+.jfx-textarea{
+	-fx-font-size: 14;
+}
+
+.lcca-pv-text-area:hover{
+-fx-border-color: #A26700
+
+}
+
+.lcca_combo{
+-fx-font-size: 13;
+-fx-border-color:  #000000;
+}
+
+.back-button:hover{
+-fx-background-color: #959595;
+}
