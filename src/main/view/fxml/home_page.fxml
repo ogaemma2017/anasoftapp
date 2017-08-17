@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/8.0.111"
+            fx:controller="main.view.controller.HomePageController">
+    <children>
+        <ImageView fitHeight="700.0" fitWidth="1350.0" pickOnBounds="true" preserveRatio="true"/>
+        <BorderPane prefHeight="700.0" prefWidth="1350.0">
+            <top>
+                <VBox BorderPane.alignment="CENTER">
+                    <children>
+                        <MenuBar>
+                            <menus>
+                                <Menu mnemonicParsing="false" text="File">
+                                    <items>
+                                        <MenuItem onAction="#startNewProject" text="_New Project">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP"
+                                                                    shift="UP" shortcut="UP"/>
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem onAction="#openExistingProject" text="_Open Existing Project">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP"
+                                                                    shift="UP" shortcut="UP"/>
+                                            </accelerator>
+                                        </MenuItem>
+                                        <SeparatorMenuItem mnemonicParsing="false"/>
+                                        <MenuItem onAction="#exit" text="E_xit">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="DOWN" code="X" control="UP" meta="UP"
+                                                                    shift="UP" shortcut="UP"/>
+                                            </accelerator>
+                                        </MenuItem>
+                                    </items>
+                                </Menu>
+                                <Menu mnemonicParsing="false" text="Help">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#about" text="About Anasoft App"/>
+                                    </items>
+                                </Menu>
+                            </menus>
+                        </MenuBar>
+                    </children>
+                </VBox>
+            </top>
+            <left>
+                <AnchorPane prefHeight="635.0" prefWidth="476.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <JFXTextArea layoutX="24.0" layoutY="81.0" prefHeight="519.0" prefWidth="426.0"/>
+                    </children>
+                </AnchorPane>
+            </left>
+            <center>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <AnchorPane fx:id="optionPane" layoutX="46.0" layoutY="269.0" visible="false">
+                            <children>
+                                <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="15.0" layoutY="11.0"
+                                           onAction="#analysis" prefHeight="300.0" prefWidth="356.0"
+                                           style="-fx-border-color: #8F8888; -fx-border-radius: 15; -fx-border-width: 5;"
+                                           text="ANALYSIS">
+                                    <graphic>
+                                        <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../resources/performance-analysis-img.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <font>
+                                        <Font size="40.0"/>
+                                    </font>
+                                </JFXButton>
+                                <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="427.0" layoutY="11.0"
+                                           onAction="#decision" prefHeight="300.0"
+                                           style="-fx-border-color: #8F8888; -fx-border-radius: 15; -fx-border-width: 5;"
+                                           text="DECISION">
+                                    <graphic>
+                                        <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../resources/decision.jpg"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <font>
+                                        <Font size="40.0"/>
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </AnchorPane>
+                        <JFXButton contentDisplay="TOP" layoutX="785.0" layoutY="13.0" text="user">
+                            <graphic>
+                                <FontAwesomeIconView fill="#544646" glyphName="USER" size="50.0"/>
+                            </graphic>
+                        </JFXButton>
+                        <AnchorPane fx:id="newProjectPane" layoutX="34.0" layoutY="123.0" prefHeight="514.0"
+                                    prefWidth="722.0">
+                            <children>
+                                <JFXButton graphicTextGap="10.0" layoutX="199.0" layoutY="153.0"
+                                           onAction="#startNewProject" text="Start a new project...">
+                                    <graphic>
+                                        <FontAwesomeIconView fill="#544646" glyphName="FILE_TEXT" size="40.0"/>
+                                    </graphic>
+                                    <font>
+                                        <Font size="30.0"/>
+                                    </font>
+                                </JFXButton>
+                                <JFXButton graphicTextGap="10.0" layoutX="199.0" layoutY="263.0"
+                                           onAction="#openExistingProject" text="Open an existng project">
+                                    <graphic>
+                                        <FontAwesomeIconView fill="#544646" glyphName="FOLDER_OPEN" size="40.0"/>
+                                    </graphic>
+                                    <font>
+                                        <Font size="30.0"/>
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="700.0" prefWidth="1350.0"
+            style="-fx-background-color: #29363F;" xmlns="http://javafx.com/javafx/8.0.111"
+            fx:controller="main.view.controller.LoginFormController">
+    <children>
+        <AnchorPane layoutX="872.0" layoutY="216.0">
+            <children>
+                <TextField fx:id="userIdTextField" prefHeight="50.0" prefWidth="300.0" promptText="User id"
+                           style="-fx-background-color: transparent; -fx-border-color: #ADADAD; -fx-border-width: 3; -fx-border-radius: 10; -fx-text-inner-color: white;">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </TextField>
+                <PasswordField fx:id="passwordTextField" layoutY="93.0" prefHeight="50.0" prefWidth="300.0"
+                               promptText="password"
+                               style="-fx-background-color: transparent; -fx-border-color: #ADADAD; -fx-border-width: 3; -fx-border-radius: 10; -fx-text-inner-color: white;">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </PasswordField>
+                <JFXButton layoutY="233.0" onAction="#login" prefHeight="50.0" prefWidth="300.0" ripplerFill="#e0b03f"
+                           style="-fx-background-color: #6ED9A1; -fx-background-radius: 10;" text="LOGIN"
+                           textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="20.0"/>
+                    </font>
+                </JFXButton>
+                <JFXCheckBox fx:id="adminCheck" checkedColor="#6ed9a1" layoutY="162.0" text="Admin" textFill="WHITE">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </JFXCheckBox>
+            </children>
+        </AnchorPane>
+        <JFXButton layoutX="874.0" layoutY="649.0" text="Dont have an account? Sign up here"/>
+        <Separator layoutX="724.0" layoutY="151.0" orientation="VERTICAL" prefHeight="406.0"/>
+        <Label layoutX="204.0" layoutY="206.0" text="Anasoft app" textFill="#bfb1b1">
+            <font>
+                <Font size="48.0"/>
+            </font>
+        </Label>
+        <ImageView fitHeight="242.0" fitWidth="348.0" layoutX="202.0" layoutY="273.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../resources/performance-analysis-img.png"/>
+            </image>
+        </ImageView>
+        <Label layoutX="944.0" layoutY="129.0" text="LOGIN" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="36.0"/>
+            </font>
+        </Label>
+        <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_CIRCLE_RIGHT" layoutX="878.0" layoutY="166.0" size="40.0"/>
+        <Label layoutX="855.0" layoutY="645.0" text="Dont have an account?" textFill="WHITE">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <JFXButton layoutX="1052.0" layoutY="637.0" onAction="#signUp" text="Sign up here" textFill="WHITE"
+                   underline="true">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </JFXButton>
+    </children>
+</AnchorPane>
