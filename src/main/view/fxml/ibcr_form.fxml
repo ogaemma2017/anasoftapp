@@ -77,7 +77,7 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <JFXButton layoutX="41.0" layoutY="7.0" text="Back" textFill="#033110">
+      <JFXButton layoutX="41.0" layoutY="7.0" onAction="#backButton" text="Back" textFill="#033110">
          <graphic>
             <FontAwesomeIconView fill="#270101" glyphName="ARROW_CIRCLE_ALT_LEFT" size="30.0" />
          </graphic>

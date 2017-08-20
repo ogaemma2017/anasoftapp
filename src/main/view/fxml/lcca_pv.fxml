@@ -12,7 +12,8 @@
             stylesheets="@../css/ui.css" xmlns="http://javafx.com/javafx/8.0.111"
             fx:controller="main.view.controller.LccaPvController">
    <children>
-      <AnchorPane layoutX="47.0" layoutY="69.0" prefHeight="613.0" prefWidth="1260.0" style="-fx-background-color: #eeeeee;">
+       <AnchorPane layoutX="47.0" layoutY="69.0" prefHeight="613.0" prefWidth="1260.0"
+                   style="-fx-background-color: #eeeeee;" AnchorPane.topAnchor="50.0">
          <effect>
             <DropShadow />
          </effect>
@@ -256,7 +257,8 @@
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="chargeControllerTextField" editable="false" focusColor="#033110" prefWidth="120.0" styleClass="lcca-pv-text-area">
+                                     <JFXTextField fx:id="chargeControllerTextField" focusColor="#033110"
+                                                   prefWidth="120.0" styleClass="lcca-pv-text-area">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
@@ -275,7 +277,8 @@
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="batteryCapacityTextField" editable="false" focusColor="#033110" prefWidth="120.0" styleClass="lcca-pv-text-area">
+                                     <JFXTextField fx:id="batteryCapacityTextField" focusColor="#033110"
+                                                   prefWidth="120.0" styleClass="lcca-pv-text-area">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
@@ -294,7 +297,8 @@
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="inverterCapacityTextField" editable="false" focusColor="#033110" prefWidth="120.0" styleClass="lcca-pv-text-area">
+                                     <JFXTextField fx:id="inverterCapacityTextField" focusColor="#033110"
+                                                   prefWidth="120.0" styleClass="lcca-pv-text-area">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
@@ -542,7 +546,8 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <JFXButton layoutX="41.0" layoutY="7.0" styleClass="back-button" text="Back" textFill="#033110">
+       <JFXButton layoutX="41.0" layoutY="7.0" onAction="#backButton" styleClass="back-button" text="Back"
+                  textFill="#033110">
          <graphic>
             <FontAwesomeIconView fill="#033110" glyphName="ARROW_CIRCLE_ALT_LEFT" size="30.0" />
          </graphic>

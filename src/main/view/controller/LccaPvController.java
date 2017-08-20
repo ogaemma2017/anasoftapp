@@ -7,9 +7,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import main.model.Project;
 import main.view.utils.AlertsDialog;
+import org.json.simple.JSONObject;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LccaPvController implements Initializable{
@@ -169,6 +177,8 @@ public class LccaPvController implements Initializable{
     private double totalAmpereHrLoad = 0;
     private double correctedAmpHrLoad = 0;
     private double designCurrent = 0;
+
+    public static final String YEARS = "years";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -347,19 +357,7 @@ public class LccaPvController implements Initializable{
 
     }
 
-    @FXML
-    void findTotalLCCAOfAllComponent(ActionEvent event) {
-        if(lccSalvageValueTextField.getText().isEmpty()){
-            AlertsDialog.showErrorDialog("You need to find the lcc salvage value first");
-            return;
-        }
-
-        totalLCCA = totalReplacementInitialCost + operationAndMaintenance + batteryReplacement + inverterReplacement +
-                controllerReplacement + LCCSalvageValue;
-
-        totalLCCAOfAllComponentTextField.setText(Double.toString(totalLCCA));
-
-    }
+    public static final String WIRE_EFFICIENCY = "wire_efficiency";
 
     @FXML
     void findTotalLoad(ActionEvent event) {
@@ -792,6 +790,165 @@ public class LccaPvController implements Initializable{
         return totalWDC;
     }
 
+    public static final String BATTERY_EFFICIENCY = "battery_efficiency";
+    public static final String POWER_CONVERSION_EFFICIENCY = "power_conversion_efficiency";
+
+    //============================================DATA PERSISTENCE ==================================//
+    public static final String ESCALATION_RATE = "escalation_rate";
+    public static final String DISCOUNT_RATE = "discount_rate";
+    public static final String PEAK_SUN_VALUE = "peak_sun_value";
+    public static final String TOTAL_LOAD = "total_load";
+    public static final String NORMINAL_SYSTEM_VOLTAGE = "norminal_system_voltage";
+    public static final String MODULE_CAPACITY = "module_capacity";
+    public static final String BATTERY_NUMBER_CAPACITY = "battery_number_capacity";
+    public static final String CHARGE_CONTROLLER_CAPACITY = "charge_controller_capacity";
+    public static final String INVERTER_NUMBER_CAPACITY = "inverter_number_capacity";
+    public static final String CAPITAL_COST = "capital_cost";
+    public static final String OPERATION_AND_MAINTENANCE = "operation_and_maintenance";
+    public static final String BATTERY_REPLACEMENT = "battery_replacement";
+    public static final String INVERTER_REPLACEMENT = "inverter_replacement";
+    public static final String CONTROLLER_REPLACEMENT = "controller_replacement";
+    public static final String TOTAL_REPLACEMENT_INITIAL_COST = "total_replacement_initial_cost";
+    public static final String TOTAL_REPLACEMENT_LCCA_COST = "total_replacement_lcca_cost";
+    public static final String LCC_SALVAGE_VALUE = "lcc_salvage_value";
+    public static final String TOTAL_LCCA = "total_lcca";
+    public static final String TOTAL_AMPERE_HR_LOAD = "total_ampere_hr_load";
+    public static final String CORRECTED_AMPERE_LOAD = "corrected_ampere_hr_load";
+    public static final String DESIGN_CURRENT = "design_current";
+    Project project;
+
+    @FXML
+    void findTotalLCCAOfAllComponent(ActionEvent event) {
+        if (lccSalvageValueTextField.getText().isEmpty()) {
+            AlertsDialog.showErrorDialog("You need to find the lcc salvage value first");
+            return;
+        }
+
+        totalLCCA = totalReplacementInitialCost + operationAndMaintenance + batteryReplacement + inverterReplacement +
+                controllerReplacement + LCCSalvageValue;
+
+        totalLCCAOfAllComponentTextField.setText(Double.toString(totalLCCA));
+
+        saveToFile();
+
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+
+        readFromFile();
+    }
+
+    @FXML
+    void backButton(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Alert confirmation = new Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        confirmation.setHeaderText(null);
+        confirmation.setContentText("Are you sure you want to close the LCCA solar pv analysis window?");
+
+        confirmation.initModality(Modality.APPLICATION_MODAL);
+
+        ButtonType yes = new ButtonType("Yes");
+        ButtonType no = new ButtonType("No");
+
+        confirmation.getButtonTypes().
+
+                setAll(yes, no);
+
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.get() == yes) {
+            stage.close();
+        } else {
+            confirmation.close();
+        }
+    }
+
+    public void saveToFile() {
+
+        JSONObject lccaPv = new JSONObject();
+
+        lccaPv.put(WIRE_EFFICIENCY, wireEfficiency);
+        lccaPv.put(BATTERY_EFFICIENCY, batteryEfficiency);
+        lccaPv.put(POWER_CONVERSION_EFFICIENCY, powerConversionEfficiency);
+        lccaPv.put(ESCALATION_RATE, escalationRate);
+        lccaPv.put(DISCOUNT_RATE, discountRate);
+
+        lccaPv.put(PEAK_SUN_VALUE, peakSunValue);
+
+        lccaPv.put(TOTAL_LOAD, totalLoad);
+        lccaPv.put(NORMINAL_SYSTEM_VOLTAGE, norminalSystemVoltage);
+
+        lccaPv.put(MODULE_CAPACITY, moduleCapacity);
+        lccaPv.put(BATTERY_NUMBER_CAPACITY, batteryNumberCapacity);
+        lccaPv.put(CHARGE_CONTROLLER_CAPACITY, chargeControllerCapacity);
+        lccaPv.put(INVERTER_NUMBER_CAPACITY, inverterNumberCapacity);
+
+        lccaPv.put(CAPITAL_COST, capitalCost);
+        lccaPv.put(OPERATION_AND_MAINTENANCE, operationAndMaintenance);
+        lccaPv.put(BATTERY_REPLACEMENT, batteryReplacement);
+        lccaPv.put(CONTROLLER_REPLACEMENT, controllerReplacement);
+        lccaPv.put(INVERTER_REPLACEMENT, inverterReplacement);
+        lccaPv.put(YEARS, years);
+
+        lccaPv.put(TOTAL_REPLACEMENT_INITIAL_COST, totalReplacementInitialCost);
+        lccaPv.put(TOTAL_REPLACEMENT_LCCA_COST, totalReplacementLCCACost);
+        lccaPv.put(LCC_SALVAGE_VALUE, LCCSalvageValue);
+        lccaPv.put(TOTAL_LCCA, totalLCCA);
+        lccaPv.put(TOTAL_AMPERE_HR_LOAD, totalAmpereHrLoad);
+        lccaPv.put(CORRECTED_AMPERE_LOAD, correctedAmpHrLoad);
+        lccaPv.put(DESIGN_CURRENT, designCurrent);
+
+        project.setLcca_pv(lccaPv);
+
+    }
+
+    private void readFromFile() {
+        JSONObject lccaPv = project.getLcca_pv();
+
+        try {
+
+            wireEfficiencyTextField.setText(Double.toString((double) lccaPv.get(WIRE_EFFICIENCY)));
+            batteryEfficiencyTextField.setText(Double.toString((double) lccaPv.get(BATTERY_EFFICIENCY)));
+            powerEfficiencyTextField.setText(Double.toString((double) lccaPv.get(POWER_CONVERSION_EFFICIENCY)));
+            escalationRateTextField.setText(Double.toString((double) lccaPv.get(ESCALATION_RATE)));
+            discountRateTextField.setText(Double.toString((double) lccaPv.get(DISCOUNT_RATE)));
+
+            peakSunValueTextField.setText(Double.toString((double) lccaPv.get(PEAK_SUN_VALUE)));
+
+            totalLoadTextField.setText(Double.toString((double) lccaPv.get(TOTAL_LOAD)));
+            norminalSystemVoltageTextField.setText(Double.toString((double) lccaPv.get(NORMINAL_SYSTEM_VOLTAGE)));
+
+            moduleCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(MODULE_CAPACITY)));
+            batteryCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(BATTERY_NUMBER_CAPACITY)));
+            chargeControllerNumberTextField.setText(Double.toString((double) lccaPv.get(CHARGE_CONTROLLER_CAPACITY)));
+            inverterCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(INVERTER_NUMBER_CAPACITY)));
+
+            capitalCostLCC.setText(Double.toString((double) lccaPv.get(CAPITAL_COST)));
+            operationAndMaintenanceLCC.setText(Double.toString((double) lccaPv.get(OPERATION_AND_MAINTENANCE)));
+            batteryReplacementLCCATextField.setText(Double.toString((double) lccaPv.get(BATTERY_REPLACEMENT)));
+            controllerReplacementLCCATextField.setText(Double.toString((double) lccaPv.get(CONTROLLER_REPLACEMENT)));
+            inverterReplacementCostInitialCostTextField.setText(Double.toString((double) lccaPv.get(INVERTER_REPLACEMENT)));
+
+
+            //yearCombo
+
+            totalReplacementCostInitialCostTextField.setText(Double.toString((double) lccaPv.get(TOTAL_REPLACEMENT_INITIAL_COST)));
+            totalReplacementLCCTextField.setText(Double.toString((double) lccaPv.get(TOTAL_REPLACEMENT_LCCA_COST)));
+            lccSalvageValueTextField.setText(Double.toString((double) lccaPv.get(LCC_SALVAGE_VALUE)));
+            totalLCCAOfAllComponentTextField.setText(Double.toString((double) lccaPv.get(TOTAL_LCCA)));
+            totalAmpHrLoadTextField.setText(Double.toString((double) lccaPv.get(TOTAL_AMPERE_HR_LOAD)));
+            correctedAmpHrLoadTextField.setText(Double.toString((double) lccaPv.get(CORRECTED_AMPERE_LOAD)));
+            designCurrentTextField.setText(Double.toString((double) lccaPv.get(DESIGN_CURRENT)));
+
+        } catch (Exception e) {
+            AlertsDialog.showErrorDialog("there was an error getting the saved data");
+        }
+
+
+    }
+
     class Formulas{
         public double calculateTotalLoadInKw(double totalAcLoad, double totalDcLoads){
             return totalAcLoad + totalDcLoads;
@@ -863,4 +1020,6 @@ public class LccaPvController implements Initializable{
         }
 
     }
+
+
 }

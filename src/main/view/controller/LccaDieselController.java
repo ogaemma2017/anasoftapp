@@ -7,9 +7,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import main.model.Project;
 import main.view.utils.AlertsDialog;
+import org.json.simple.JSONObject;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LccaDieselController implements Initializable{
@@ -47,8 +55,7 @@ public class LccaDieselController implements Initializable{
     @FXML
     private JFXTextField annualServiceCostTextField;
 
-    @FXML
-    private JFXTextField LifeServiceCostTextField;
+    public static final String GENERAL_ESCALATION_RATE = "general_escalation_rate";
 
     @FXML
     private JFXTextField annualGeneratorReplacementCostTextField;
@@ -113,6 +120,7 @@ public class LccaDieselController implements Initializable{
     private double salvageValue = 0;
     private double lifeSalvageValue = 0;
     private double totalLCCA = 0;
+    public static final String FUEL_ESCALATION_RATE = "fuel_escalation_rate";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -237,22 +245,7 @@ public class LccaDieselController implements Initializable{
         lifeSalvageValueTextField.setText(Double.toString(lifeSalvageValue));
     }
 
-    @FXML
-    void findLifeServiceCost(ActionEvent event) {
-        if(annualServiceCostTextField.getText().isEmpty()){
-            AlertsDialog.showErrorDialog("Enter the annual service cost");
-            return;
-        }
-
-        try{
-            annualServiceCost = Double.parseDouble(annualServiceCostTextField.getText());
-            lifeServiceCost = formulas.calculateLifeServiceCost(annualServiceCost, generalEscalationRate, discountRate, year);
-            LifeServiceCostTextField.setText(Double.toString(lifeServiceCost));
-        }catch (Exception e){
-            AlertsDialog.showErrorDialog("Please enter a valid annual service cost");
-        }
-
-    }
+    public static final String DISCOUNT_RATE = "discount_rate";
 
     @FXML
     void findSalvageValue(ActionEvent event) {
@@ -273,17 +266,7 @@ public class LccaDieselController implements Initializable{
 
     }
 
-    @FXML
-    void findTotalLCCAAnalysisOfAllComponent(ActionEvent event) {
-        if(lifeSalvageValueTextField.getText().isEmpty()){
-            AlertsDialog.showErrorDialog("Find teh life salvage value first");
-            return;
-        }
-
-        totalLCCA = capitalCost + lifeFuelCost + lifeServiceCost + totalLifeReplacementCost + lifeSalvageValue;
-        totalLCCAAnalysisOfAllComponentTextField.setText(Double.toString(totalLCCA));
-
-    }
+    public static final String POWER_FACTOR = "power_factor";
 
     @FXML
     void findTotalReplacementCost(ActionEvent event) {
@@ -295,6 +278,8 @@ public class LccaDieselController implements Initializable{
         totalLifeReplacementCost = lifeEngineReplacementCost + lifeTopCylinderCost + lifeEngineReplacementCost;
         totalLifeReplacementCostTextField.setText(Double.toString(totalLifeReplacementCost));
     }
+
+    public static final String YEAR = "year";
 
     private class Formulas {
         public double calculateGeneratorCapacity(double maxLoad, double powerFactor) {
@@ -359,4 +344,161 @@ public class LccaDieselController implements Initializable{
 
 
     }
+
+    public static final String MAX_LOAD = "max_load";
+    public static final String GENERATOR_CAPACITY = "generator_capacity";
+    public static final String FUEL_CONSUMPTION_PER_HR = "fuel_consumption_per_hr";
+    public static final String ANNUAL_FUEL_COST = "annual_fuel_cost";
+    public static final String LIFE_FUEL_COST = "life_fuel_cost";
+    public static final String ANNUAL_SERVICE_COST = "annual_fuel_cost";
+    public static final String LIFE_SERVICE_COST = "life_service_cost";
+    public static final String ANNUAL_GENERATOR_REPLACEMENT_COST = "annual_generator_replacement_cost";
+    public static final String LIFE_GENERATOR_SERVICE_COST = "life_generator_service_cost";
+    public static final String ANNUAL_TOP_CYLINDER_REPLACEMENT_COST = "annual_top_cylinder_replacemnet_cost";
+    public static final String LIFE_TOP_CYLINDER_REPLACEMENT_COST = "life_top_cylinder_replacement_cost";
+    public static final String ANNUAL_ENGINE_REPLACEMENT_COST = "annual_engine_replacement_cost";
+    public static final String LIFE_ENGINE_REPLACEMENT_COST = "life_engine_replacement_cost";
+    public static final String TOTAL_LIFE_REPLACEMENT_COST = "total_life_replacement_cost";
+    public static final String CAPITAL_COST = "capital_cost";
+    public static final String SALVAGE_VALUE = "salvage_value";
+    public static final String LIFE_SALVAGE_VALUE = "life_salvage_value";
+    public static final String TOTAL_LCCA = "total_lcca";
+    @FXML
+    private JFXTextField lifeServiceCostTextField;
+    private Project project;
+
+    @FXML
+    void findLifeServiceCost(ActionEvent event) {
+        if (annualServiceCostTextField.getText().isEmpty()) {
+            AlertsDialog.showErrorDialog("Enter the annual service cost");
+            return;
+        }
+
+        try {
+            annualServiceCost = Double.parseDouble(annualServiceCostTextField.getText());
+            lifeServiceCost = formulas.calculateLifeServiceCost(annualServiceCost, generalEscalationRate, discountRate, year);
+            lifeServiceCostTextField.setText(Double.toString(lifeServiceCost));
+        } catch (Exception e) {
+            AlertsDialog.showErrorDialog("Please enter a valid annual service cost");
+        }
+
+    }
+
+    @FXML
+    void findTotalLCCAAnalysisOfAllComponent(ActionEvent event) {
+        if (lifeSalvageValueTextField.getText().isEmpty()) {
+            AlertsDialog.showErrorDialog("Find teh life salvage value first");
+            return;
+        }
+
+        totalLCCA = capitalCost + lifeFuelCost + lifeServiceCost + totalLifeReplacementCost + lifeSalvageValue;
+        totalLCCAAnalysisOfAllComponentTextField.setText(Double.toString(totalLCCA));
+
+        saveToFile();
+
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+
+        readFromFile();
+    }
+
+    @FXML
+    void backButton(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Alert confirmation = new Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        confirmation.setHeaderText(null);
+        confirmation.setContentText("Are you sure you want to close the LCCA diesel generator analysis window?");
+
+        confirmation.initModality(Modality.APPLICATION_MODAL);
+
+        ButtonType yes = new ButtonType("Yes");
+        ButtonType no = new ButtonType("No");
+
+        confirmation.getButtonTypes().
+
+                setAll(yes, no);
+
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.get() == yes) {
+            stage.close();
+        } else {
+            confirmation.close();
+        }
+    }
+
+    private void saveToFile() {
+        JSONObject lccaDiesel = new JSONObject();
+
+        lccaDiesel.put(GENERAL_ESCALATION_RATE, generalEscalationRate);
+        lccaDiesel.put(FUEL_ESCALATION_RATE, fuelEscalationRate);
+        lccaDiesel.put(DISCOUNT_RATE, discountRate);
+        lccaDiesel.put(POWER_FACTOR, powerFactor);
+        lccaDiesel.put(YEAR, year);
+
+        lccaDiesel.put(MAX_LOAD, maxLoad);
+        lccaDiesel.put(GENERATOR_CAPACITY, generatorCapacity);
+        lccaDiesel.put(FUEL_CONSUMPTION_PER_HR, fuelConsumptionPerHr);
+
+        lccaDiesel.put(ANNUAL_FUEL_COST, annualFuelCost);
+        lccaDiesel.put(LIFE_FUEL_COST, lifeFuelCost);
+        lccaDiesel.put(ANNUAL_SERVICE_COST, annualServiceCost);
+        lccaDiesel.put(LIFE_SERVICE_COST, lifeServiceCost);
+        lccaDiesel.put(ANNUAL_GENERATOR_REPLACEMENT_COST, annualGeneratorReplacementCost);
+        lccaDiesel.put(LIFE_GENERATOR_SERVICE_COST, lifeGeneratorServiceCost);
+        lccaDiesel.put(ANNUAL_TOP_CYLINDER_REPLACEMENT_COST, annualTopCylinderReplacementCost);
+        lccaDiesel.put(LIFE_TOP_CYLINDER_REPLACEMENT_COST, lifeTopCylinderCost);
+        lccaDiesel.put(ANNUAL_ENGINE_REPLACEMENT_COST, annualEngineReplacementCost);
+        lccaDiesel.put(LIFE_ENGINE_REPLACEMENT_COST, lifeEngineReplacementCost);
+
+        lccaDiesel.put(TOTAL_LIFE_REPLACEMENT_COST, totalLifeReplacementCost);
+        lccaDiesel.put(CAPITAL_COST, capitalCost);
+        lccaDiesel.put(SALVAGE_VALUE, salvageValue);
+        lccaDiesel.put(LIFE_SALVAGE_VALUE, lifeSalvageValue);
+        lccaDiesel.put(TOTAL_LCCA, totalLCCA);
+
+        project.setLcca_diesel(lccaDiesel);
+    }
+
+    public void readFromFile() {
+
+        JSONObject lccaDiesel = project.getLcca_diesel();
+
+        try {
+
+            generalEscalationRateTextField.setText(Double.toString((double) lccaDiesel.get(GENERAL_ESCALATION_RATE)));
+            fuelEscalationRateTextField.setText(Double.toString((double) lccaDiesel.get(FUEL_ESCALATION_RATE)));
+            discountRateTextField.setText(Double.toString((double) lccaDiesel.get(DISCOUNT_RATE)));
+            powerFactorTextField.setText(Double.toString((double) lccaDiesel.get(POWER_FACTOR)));
+//        yearsCombo
+
+            maxLoadTextField.setText(Double.toString((double) lccaDiesel.get(MAX_LOAD)));
+            generatorCapacityTextField.setText(Double.toString((double) lccaDiesel.get(GENERAL_ESCALATION_RATE)));
+            fuelConsumptionTextField.setText(Double.toString((double) lccaDiesel.get(FUEL_CONSUMPTION_PER_HR)));
+
+            annualFuelCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_FUEL_COST)));
+            lifeFuelCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_FUEL_COST)));
+            annualServiceCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_SERVICE_COST)));
+            lifeServiceCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_SERVICE_COST)));
+            annualGeneratorReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_GENERATOR_REPLACEMENT_COST)));
+            lifeGeneratorReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_GENERATOR_SERVICE_COST)));
+            annualTopCyclinderCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_TOP_CYLINDER_REPLACEMENT_COST)));
+            lifeCylinderReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_TOP_CYLINDER_REPLACEMENT_COST)));
+            annualEngineReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_ENGINE_REPLACEMENT_COST)));
+            lifeEngineReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_ENGINE_REPLACEMENT_COST)));
+
+            totalLifeReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(TOTAL_LIFE_REPLACEMENT_COST)));
+            capitalCostTextField.setText(Double.toString((double) lccaDiesel.get(CAPITAL_COST)));
+            salvageValueTextField.setText(Double.toString((double) lccaDiesel.get(SALVAGE_VALUE)));
+            lifeSalvageValueTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_SALVAGE_VALUE)));
+            totalLCCAAnalysisOfAllComponentTextField.setText(Double.toString((double) lccaDiesel.get(TOTAL_LCCA)));
+
+        } catch (Exception e) {
+            AlertsDialog.showErrorDialog("there was an error getting the saved data");
+        }
+    }
+
 }

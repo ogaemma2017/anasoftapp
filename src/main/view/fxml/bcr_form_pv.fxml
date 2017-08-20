@@ -19,7 +19,9 @@
          <children>
             <AnchorPane layoutX="130.0" layoutY="-14.0" prefHeight="50.0" prefWidth="1260.0" style="-fx-background-color: #270101;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label alignment="CENTER" layoutX="449.0" prefWidth="400.0" text="BCR OF DIESEL GENERATOR" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="0.0">
+                  <Label alignment="CENTER" layoutX="416.0" prefHeight="45.0" prefWidth="518.0"
+                         text="BCR OF SOLAR PV GENERATOR" textAlignment="CENTER" textFill="WHITE"
+                         AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -151,7 +153,7 @@
                          style="-fx-font-size: 14;"/>
          </children>
       </AnchorPane>
-      <JFXButton layoutX="41.0" layoutY="7.0" text="Back" textFill="#033110">
+      <JFXButton layoutX="41.0" layoutY="7.0" onAction="#backButton" text="Back" textFill="#033110">
          <graphic>
             <FontAwesomeIconView fill="#270101" glyphName="ARROW_CIRCLE_ALT_LEFT" size="30.0" />
          </graphic>

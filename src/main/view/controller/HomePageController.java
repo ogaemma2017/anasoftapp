@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -17,6 +19,7 @@ import main.view.utils.Navigation;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -62,6 +65,9 @@ public class HomePageController implements Initializable {
         try {
             AnchorPane root = loader.load();
 
+            AnalysisController controller = loader.getController();
+            controller.setProject(project);
+
             primaryStage.setScene(new Scene(root));
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.initModality(Modality.APPLICATION_MODAL);
@@ -86,6 +92,27 @@ public class HomePageController implements Initializable {
 
     @FXML
     void exit(ActionEvent event) {
+
+        Alert confirmation = new Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        confirmation.setHeaderText(null);
+        confirmation.setContentText("Are you sure you to exit?");
+
+        confirmation.initModality(Modality.APPLICATION_MODAL);
+
+        ButtonType yes = new ButtonType("Yes");
+        ButtonType no = new ButtonType("No");
+
+        confirmation.getButtonTypes().
+
+                setAll(yes, no);
+
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.get() == yes) {
+            System.exit(0);
+        } else {
+            confirmation.close();
+        }
 
     }
 

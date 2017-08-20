@@ -2,21 +2,26 @@
 
 <?import com.jfoenix.controls.*?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/8.0.111"
+            minWidth="-Infinity" prefHeight="700.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/8.0.111"
             fx:controller="main.view.controller.HomePageController">
     <children>
-        <ImageView fitHeight="700.0" fitWidth="1350.0" pickOnBounds="true" preserveRatio="true"/>
-        <BorderPane prefHeight="700.0" prefWidth="1350.0">
+        <ImageView fitHeight="700.0" fitWidth="1370.0" opacity="0.1" pickOnBounds="true">
+            <image>
+                <Image url="@../resources/AR-170309882.jpg&amp;maxW=430&amp;maxH=430.jpg"/>
+            </image>
+        </ImageView>
+        <BorderPane prefHeight="700.0">
             <top>
                 <VBox BorderPane.alignment="CENTER">
                     <children>
-                        <MenuBar>
+                        <MenuBar prefHeight="39.0" prefWidth="1371.0" style="-fx-background-color: gray;">
                             <menus>
                                 <Menu mnemonicParsing="false" text="File">
                                     <items>
@@ -54,7 +59,26 @@
             <left>
                 <AnchorPane prefHeight="635.0" prefWidth="476.0" BorderPane.alignment="CENTER">
                     <children>
-                        <JFXTextArea layoutX="24.0" layoutY="81.0" prefHeight="519.0" prefWidth="426.0"/>
+                        <AnchorPane layoutX="43.0" layoutY="101.0" opacity="0.6" prefHeight="518.0" prefWidth="419.0"
+                                    style="-fx-background-color: white;"/>
+                        <Label layoutX="46.0" layoutY="51.0" prefHeight="53.0" prefWidth="416.0" text="ANASOFT APP"
+                               textFill="#0f0000d3" underline="true">
+                            <font>
+                                <Font name="System Bold" size="36.0"/>
+                            </font>
+                        </Label>
+                        <JFXTextArea editable="false" layoutX="41.0" layoutY="101.0" prefHeight="519.0"
+                                     prefWidth="426.0"
+                                     style="-fx-border-color: grey; -fx-border-width: 5; -fx-border-radius: 10;"
+                                     text="This is a User Friendly Life Cycle Cost Analysis (LCCA) Software that enables users to carry out Benefit to Cost ratio (BCR), Incremental Benefit to Cost ratio (IBCR) and Life Cycle Cost Analysis (LCCA) of two power generation options. Solar Photovoltaic and Diesel Generator systems.&#10;&#10;This application is simply an analysis made easytool needed for easy and rapid decision making regarding the two power generation alternatives. "
+                                     wrapText="true">
+                            <font>
+                                <Font size="22.0"/>
+                            </font>
+                            <padding>
+                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+                            </padding>
+                        </JFXTextArea>
                     </children>
                 </AnchorPane>
             </left>
@@ -97,32 +121,60 @@
                                 </JFXButton>
                             </children>
                         </AnchorPane>
-                        <JFXButton contentDisplay="TOP" layoutX="785.0" layoutY="13.0" text="user">
+                        <JFXButton contentDisplay="TOP" layoutX="785.0" layoutY="13.0" text="user" visible="false">
                             <graphic>
                                 <FontAwesomeIconView fill="#544646" glyphName="USER" size="50.0"/>
                             </graphic>
                         </JFXButton>
-                        <AnchorPane fx:id="newProjectPane" layoutX="34.0" layoutY="123.0" prefHeight="514.0"
+                        <AnchorPane fx:id="newProjectPane" layoutX="34.0" layoutY="-1.0" prefHeight="662.0"
                                     prefWidth="722.0">
                             <children>
-                                <JFXButton graphicTextGap="10.0" layoutX="199.0" layoutY="153.0"
-                                           onAction="#startNewProject" text="Start a new project...">
-                                    <graphic>
-                                        <FontAwesomeIconView fill="#544646" glyphName="FILE_TEXT" size="40.0"/>
-                                    </graphic>
-                                    <font>
-                                        <Font size="30.0"/>
-                                    </font>
-                                </JFXButton>
-                                <JFXButton graphicTextGap="10.0" layoutX="199.0" layoutY="263.0"
-                                           onAction="#openExistingProject" text="Open an existng project">
-                                    <graphic>
-                                        <FontAwesomeIconView fill="#544646" glyphName="FOLDER_OPEN" size="40.0"/>
-                                    </graphic>
-                                    <font>
-                                        <Font size="30.0"/>
-                                    </font>
-                                </JFXButton>
+                                <AnchorPane layoutX="122.0" layoutY="170.0">
+                                    <children>
+                                        <Label layoutX="244.0" layoutY="72.0" text="Start a new project...">
+                                            <font>
+                                                <Font size="18.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="240.0" layoutY="1.0" text="NEW">
+                                            <font>
+                                                <Font size="48.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="249.0" layoutY="238.0" text="Open an existng project">
+                                            <font>
+                                                <Font size="18.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="245.0" layoutY="167.0" text="OPEN">
+                                            <font>
+                                                <Font size="48.0"/>
+                                            </font>
+                                        </Label>
+                                        <JFXButton contentDisplay="GRAPHIC_ONLY" graphicTextGap="10.0" layoutX="4.0"
+                                                   onAction="#startNewProject" prefHeight="122.0" prefWidth="348.0">
+                                            <graphic>
+                                                <FontAwesomeIconView fill="#544646" glyphName="FILE_TEXT" size="100.0"/>
+                                            </graphic>
+                                            <font>
+                                                <Font size="30.0"/>
+                                            </font>
+                                        </JFXButton>
+                                        <JFXButton graphicTextGap="10.0" layoutY="166.0" onAction="#openExistingProject"
+                                                   prefHeight="122.0" prefWidth="398.0" text=" ">
+                                            <graphic>
+                                                <FontAwesomeIconView fill="#544646" glyphName="FOLDER_OPEN"
+                                                                     size="100.0"/>
+                                            </graphic>
+                                            <font>
+                                                <Font size="30.0"/>
+                                            </font>
+                                        </JFXButton>
+                                    </children>
+                                </AnchorPane>
+                                <Separator layoutX="90.0" layoutY="78.0" orientation="VERTICAL"
+                                           style="-fx-background-color: gray;" AnchorPane.bottomAnchor="-0.0"
+                                           AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="0.0"/>
                             </children>
                         </AnchorPane>
                     </children>

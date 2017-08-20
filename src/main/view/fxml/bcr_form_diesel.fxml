@@ -76,9 +76,9 @@
                                                         <Font size="14.0"/>
                                                     </font>
                                                 </JFXTextField>
-                                                <JFXTextField fx:id="totalCostTextField" focusColor="#570404"
-                                                              labelFloat="true" layoutX="10.0" layoutY="262.0"
-                                                              prefWidth="250.0" promptText="Total Cost">
+                                                <JFXTextField fx:id="totalCostTextField" editable="false"
+                                                              focusColor="#570404" labelFloat="true" layoutX="10.0"
+                                                              layoutY="262.0" prefWidth="250.0" promptText="Total Cost">
                                                     <font>
                                                         <Font name="System Bold Italic" size="16.0"/>
                                                     </font>
@@ -128,9 +128,10 @@
                                                         <Font size="14.0"/>
                                                     </font>
                                                 </JFXTextField>
-                                                <JFXTextField fx:id="totalBenefitTextField" focusColor="#570404"
-                                                              labelFloat="true" layoutX="10.0" layoutY="262.0"
-                                                              prefWidth="250.0" promptText="Total Benefit">
+                                                <JFXTextField fx:id="totalBenefitTextField" editable="false"
+                                                              focusColor="#570404" labelFloat="true" layoutX="10.0"
+                                                              layoutY="262.0" prefWidth="250.0"
+                                                              promptText="Total Benefit">
                                                     <font>
                                                         <Font name="System Bold Italic" size="16.0"/>
                                                     </font>
@@ -173,9 +174,9 @@
                         <Font name="System Bold" size="18.0"/>
                     </font>
                 </Label>
-                <JFXTextField fx:id="bcrInPresentWorkValueTextField" alignment="CENTER" focusColor="#570404"
-                              labelFloat="true" layoutX="324.0" layoutY="522.0" prefHeight="35.0" prefWidth="540.0"
-                              promptText="BCR IN PRESENT WORK VALUE">
+                <JFXTextField fx:id="bcrInPresentWorkValueTextField" alignment="CENTER" editable="false"
+                              focusColor="#570404" labelFloat="true" layoutX="324.0" layoutY="522.0" prefHeight="35.0"
+                              prefWidth="540.0" promptText="BCR IN PRESENT WORK VALUE">
                     <font>
                         <Font name="System Bold" size="18.0"/>
                     </font>
@@ -191,7 +192,7 @@
                              style="-fx-font-size: 14;"/>
             </children>
         </AnchorPane>
-        <JFXButton layoutX="41.0" layoutY="7.0" text="Back" textFill="#033110">
+        <JFXButton layoutX="41.0" layoutY="7.0" onAction="#backButton" text="Back" textFill="#033110">
             <graphic>
                 <FontAwesomeIconView fill="#270101" glyphName="ARROW_CIRCLE_ALT_LEFT" size="30.0"/>
             </graphic>
