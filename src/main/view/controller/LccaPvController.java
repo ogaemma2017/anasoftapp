@@ -8,16 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.model.Project;
 import main.view.utils.AlertsDialog;
 import org.json.simple.JSONObject;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LccaPvController implements Initializable{
@@ -842,7 +838,7 @@ public class LccaPvController implements Initializable{
     @FXML
     void backButton(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+/*
         Alert confirmation = new Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
         confirmation.setHeaderText(null);
         confirmation.setContentText("Are you sure you want to close the LCCA solar pv analysis window?");
@@ -862,7 +858,9 @@ public class LccaPvController implements Initializable{
             stage.close();
         } else {
             confirmation.close();
-        }
+        }*/
+
+        stage.close();
     }
 
     public void saveToFile() {

@@ -33,6 +33,7 @@ public class BcrDieselController implements Initializable {
     public static final String MAINTENANCE = "maintenance";
     public static final String TAX_PAYMENT = "tax_payment";
     public static final String TOTAL_COST = "total_cost";
+
     int year = 1;
     double discountRate = 0;
     Project project;

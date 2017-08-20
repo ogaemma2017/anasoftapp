@@ -76,12 +76,18 @@ public class AnalysisController implements Initializable {
 
                 }
                 break;
-            case 'I': {
-                FXMLLoader loader = showPage(Navigation.IBCR);
+            case 'I':
+                if (project.getBcr_diesel() == null || project.getBcr_pv() == null
+                        || project.getBcr_diesel().isEmpty() || project.getBcr_pv().isEmpty()) {
 
-                IbcrFormController controller = loader.getController();
-                controller.setProject(project);
-            }
+                    AlertsDialog.showErrorDialog("Please find the BCR for both PV and Diesel generator systems" +
+                            "\nbefore attempting to find their IBCR");
+                } else {
+                    FXMLLoader loader = showPage(Navigation.IBCR);
+
+                    IbcrFormController controller = loader.getController();
+                    controller.setProject(project);
+                }
             break;
 
             case 'L':
