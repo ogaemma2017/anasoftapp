@@ -164,7 +164,7 @@ public class LccaPvController implements Initializable{
     double batteryReplacement = 0;
     double inverterReplacement = 0;
     double controllerReplacement = 0;
-    private Integer years = 0;
+    private Integer years = 1;
 
     private double totalReplacementInitialCost = 0;
     private double totalReplacementLCCACost = 0;
@@ -321,6 +321,11 @@ public class LccaPvController implements Initializable{
         norminalSystemVoltage = formulas.calculateNorminalSystemVolatage(totalLoad);
         norminalSystemVoltageTextField.setText(Double.toString(norminalSystemVoltage));
 
+        moduleCapacityTextField.setText(Double.toString(norminalSystemVoltage));
+        inverterCapacityTextField.setText(Double.toString(norminalSystemVoltage));
+        chargeControllerTextField.setText(Double.toString(norminalSystemVoltage));
+        batteryCapacityTextField.setText(Double.toString(norminalSystemVoltage));
+
     }
 
     @FXML
@@ -331,7 +336,8 @@ public class LccaPvController implements Initializable{
             return;
         }
 
-        salvageValueTextField.setText(Double.toString(0.2 * capitalCost));
+        System.out.println(capitalCost);
+        salvageValueTextField.setText(Double.toString((0.2 * capitalCost)));
 
     }
 
@@ -366,14 +372,12 @@ public class LccaPvController implements Initializable{
             AlertsDialog.showErrorDialog("You have not inputted any AC or DC load\n" +
                     "You must enter atleast one AC or DC load");
             totalLoadTextField.setText("");
-            inverterCapacityTextField.setText("");
             return;
         }
 
         totalLoad = formulas.calculateTotalLoadInKw(totalAcLaod, totalDCLoad);
 
         totalLoadTextField.setText(Double.toString(totalLoad));
-        inverterCapacityTextField.setText(Double.toString(totalLoad));
 
     }
 
@@ -407,6 +411,7 @@ public class LccaPvController implements Initializable{
             totalReplacementLCCACost = capitalcostInitialCost + operationAndMaintenance + inverterReplacement +
                     batteryReplacement + controllerReplacement;
 
+            capitalCost = capitalcostInitialCost;
             capitalCostLCC.setText(Double.toString(capitalcostInitialCost));
             operationAndMaintenanceLCC.setText(Double.toString(operationAndMaintenance));
             batteryReplacementLCCATextField.setText(Double.toString(batteryReplacement));
@@ -980,6 +985,7 @@ public class LccaPvController implements Initializable{
 
         public double calculateLCCOfMaintenance(double initialCostOfMaintenance, double escalationRate, double discountRate,
                                                 double yearsOfAnalysis){
+
             return initialCostOfMaintenance * ((1 + escalationRate) / (discountRate - escalationRate)) *
                     (1 - Math.pow(((1 + escalationRate)/(1 + discountRate)), yearsOfAnalysis));
         }

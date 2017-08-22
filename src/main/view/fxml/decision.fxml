@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="508.0" prefWidth="576.0"
-            xmlns="http://javafx.com/javafx/8.0.111" fx:controller="main.view.controller.AnalysisController">
+            xmlns="http://javafx.com/javafx/8.0.111" fx:controller="main.view.controller.DecisionController">
     <effect>
         <DropShadow/>
     </effect>
@@ -24,41 +24,49 @@
                                 <Font name="Arial Rounded MT Bold" size="36.0"/>
                             </font>
                         </Label>
+                        <JFXButton layoutX="14.0" layoutY="11.0" onAction="#back" text="Back" textFill="WHITE">
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="ARROW_CIRCLE_LEFT" size="20.0"/>
+                            </graphic>
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </JFXButton>
                     </children>
                     <effect>
                         <DropShadow/>
                     </effect>
                 </AnchorPane>
-                <JFXTextField fx:id="theMostCostEffectiveOptionTextField" editable="false" focusColor="#130000"
-                              labelFloat="true" layoutX="53.0" layoutY="139.0" prefHeight="50.0"
-                              promptText="The Most Cost Effective" AnchorPane.leftAnchor="50.0"
-                              AnchorPane.rightAnchor="50.0">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </JFXTextField>
-                <JFXButton buttonType="RAISED" layoutX="62.0" layoutY="192.0" onAction="#findTheMostCostEffectiveOption"
+                <JFXButton buttonType="RAISED" layoutX="54.0" layoutY="217.0" onAction="#findTheMostCostEffectiveOption"
                            prefHeight="50.0" style="-fx-background-color: #074d07;" text="FIND" textFill="WHITE"
-                           AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                           AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0">
                     <font>
                         <Font name="System Bold" size="20.0"/>
                     </font>
                 </JFXButton>
-                <JFXTextField fx:id="theMostBeneficialOptionTextField" editable="false" focusColor="#c35c07"
-                              labelFloat="true" layoutX="54.0" layoutY="307.0" prefHeight="50.0"
-                              promptText="The Most Beneficial" AnchorPane.leftAnchor="50.0"
-                              AnchorPane.rightAnchor="50.0">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </JFXTextField>
-                <JFXButton buttonType="RAISED" layoutX="62.0" layoutY="360.0" onAction="#findTheMostBeneficialOption"
+                <JFXButton buttonType="RAISED" layoutX="54.0" layoutY="415.0" onAction="#findTheMostBeneficialOption"
                            prefHeight="50.0" style="-fx-background-color: #074d07;" text="FIND" textFill="WHITE"
-                           AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                           AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0">
                     <font>
                         <Font name="System Bold" size="20.0"/>
                     </font>
                 </JFXButton>
+                <JFXTextArea fx:id="theMostBeneficialOptionTextField" editable="false" focusColor="#130000"
+                             labelFloat="true" layoutX="78.0" layoutY="327.0" prefHeight="80.0" prefWidth="492.0"
+                             promptText="The Most Beneficial" AnchorPane.leftAnchor="54.0"
+                             AnchorPane.rightAnchor="54.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </JFXTextArea>
+                <JFXTextArea fx:id="theMostCostEffectiveOptionTextField" editable="false" focusColor="#130000"
+                             labelFloat="true" layoutX="82.0" layoutY="129.0" prefHeight="80.0" prefWidth="492.0"
+                             promptText="The Most Cost Effective" AnchorPane.leftAnchor="54.0"
+                             AnchorPane.rightAnchor="54.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </JFXTextArea>
             </children>
         </AnchorPane>
     </children>

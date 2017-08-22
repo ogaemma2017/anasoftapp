@@ -263,7 +263,8 @@
                                           <Font size="13.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="chargeControllerNumberField" editable="false" focusColor="#033110" prefWidth="120.0" promptText="Number">
+                                     <JFXTextField fx:id="chargeControllerNumberTextField" editable="false"
+                                                   focusColor="#033110" prefWidth="120.0" promptText="Number">
                                        <font>
                                           <Font size="13.0" />
                                        </font>

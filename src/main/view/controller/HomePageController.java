@@ -95,9 +95,9 @@ public class HomePageController implements Initializable {
         double lccaPv = -1;
 
         try {
-            bcrPv = (double) project.getBcr_diesel().get(BcrPvController.TOTAL_BCR);
+            bcrPv = (double) project.getBcr_pv().get(BcrPvController.TOTAL_BCR);
             bcrDiesel = (double) project.getBcr_diesel().get(BcrDieselController.TOTAL_BCR);
-            ibcr = (double) project.getBcr_diesel().get(IbcrFormController.IBCR_VALUE);
+            ibcr = (double) project.getIbcr().get(IbcrFormController.IBCR_VALUE);
             lccaDiesel = (double) project.getLcca_diesel().get(LccaDieselController.TOTAL_LCCA);
             lccaPv = (double) project.getLcca_pv().get(LccaPvController.TOTAL_LCCA);
         } catch (Exception e) {
@@ -121,7 +121,7 @@ public class HomePageController implements Initializable {
         try {
             AnchorPane root = loader.load();
 
-            AnalysisController controller = loader.getController();
+            DecisionController controller = loader.getController();
             controller.setProject(project);
 
             primaryStage.setScene(new Scene(root));

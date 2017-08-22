@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import main.model.Project;
+import main.utils.Generator;
 import main.view.utils.AlertsDialog;
 import org.json.simple.JSONObject;
 
@@ -152,8 +153,11 @@ public class LccaDieselController implements Initializable{
             maxLoad = Double.parseDouble(maxLoadTextField.getText().toString());
             generatorCapacity = maxLoad/powerFactor;
 
+            Generator gen = new Generator();
+
+
             //todo make this dynamic
-            fuelConsumptionPerHr = 4.2;
+            fuelConsumptionPerHr = gen.getFuelConsumption(generatorCapacity);
             annualFuelCost = fuelConsumptionPerHr * 24 * 365 * 200;
 
             generatorCapacityTextField.setText(Double.toString(generatorCapacity));

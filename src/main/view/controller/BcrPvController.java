@@ -243,18 +243,19 @@ public class BcrPvController implements Initializable {
         BCRPV.put(RESEARCH, this.research);
         BCRPV.put(MAINTENANCE, this.maintenance);
         BCRPV.put(TAX_PAYMENT, this.taxPayment);
-        BCRPV.put(TOTAL_COST, this.totalCost);
 
         BCRPV.put(GOVERNEMNT_GRANT, this.governmentGrant);
         BCRPV.put(GOVERNMENT_SUBSIDIES, this.governmentSubsidies);
         BCRPV.put(INVESTOR_FUND, this.investorFund);
         BCRPV.put(PROUDCTION_REVENU, this.productionRevenue);
         BCRPV.put(INCOME_TAX_BENEFIT, this.incomeTaxBenefit);
+
         BCRPV.put(TOTAL_BENEFIT, this.totalBenefit);
+        BCRPV.put(TOTAL_COST, this.totalCost);
 
         BCRPV.put(TOTAL_BCR, BCR);
 
-        project.setBcr_diesel(BCRPV);
+        project.setBcr_pv(BCRPV);
 
     }
 

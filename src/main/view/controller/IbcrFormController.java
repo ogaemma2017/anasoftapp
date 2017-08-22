@@ -69,14 +69,14 @@ public class IbcrFormController {
 
     @FXML
     void findTotalBenefitOfDieselGenerator(ActionEvent event) {
-        totalBenefitPv = (double) project.getBcr_diesel().get(TOTAL_BENEFIT);
+        totalBenefitDiesel = (double) project.getBcr_diesel().get(TOTAL_BENEFIT);
         totalBenefitOfDieselGeneratorSystemTextField.setText(Double.toString(totalBenefitPv));
     }
 
     @FXML
     void findTotalBenefitOfPvSystem(ActionEvent event) {
-        totalBenefitPv = (double) project.getBcr_diesel().get(TOTAL_BENEFIT);
-        totalBenefitOfSolarPvSystemTextField.setText(Double.toString(totalBenefitDiesel));
+        totalBenefitPv = (double) project.getBcr_pv().get(TOTAL_BENEFIT);
+        totalBenefitOfSolarPvSystemTextField.setText(Double.toString(totalBenefitPv));
     }
 
     @FXML
@@ -87,7 +87,7 @@ public class IbcrFormController {
 
     @FXML
     void findTotalCostOfPvSystem(ActionEvent event) {
-        totalCostPv = (double) project.getBcr_diesel().get(TOTAL_COST);
+        totalCostPv = (double) project.getBcr_pv().get(TOTAL_COST);
         totalCostOfSolarPvSystemTextField.setText(Double.toString(totalCostPv));
     }
 
