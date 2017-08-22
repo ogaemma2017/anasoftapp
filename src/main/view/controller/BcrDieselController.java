@@ -252,9 +252,8 @@ public class BcrDieselController implements Initializable {
     private void readFromFile() {
         JSONObject bcr_diesel = project.getBcr_diesel();
 
-        try {
-            if (!bcr_diesel.isEmpty()) {
-
+        if (!(bcr_diesel.isEmpty() || bcr_diesel == null)) {
+            try {
                 //yearsCombo.getSelectionModel().select((year = (int) diesel.get(YEAR)));
                 discountTextField.setText(Double.toString((double) bcr_diesel.get(DISCOUNT)));
                 productionTextField.setText(Double.toString((double) bcr_diesel.get(PRODUCTION_COST)));
@@ -272,9 +271,9 @@ public class BcrDieselController implements Initializable {
                 totalBenefitTextField.setText(Double.toString((double) bcr_diesel.get(TOTAL_BENEFIT)));
 
                 bcrInPresentWorkValueTextField.setText(Double.toString((double) bcr_diesel.get(TOTAL_BCR)));
+            } catch (Exception e) {
+                AlertsDialog.showErrorDialog("there was an error getting the saved data");
             }
-        } catch (Exception e) {
-            AlertsDialog.showErrorDialog("there was an error getting the saved data");
         }
 
     }

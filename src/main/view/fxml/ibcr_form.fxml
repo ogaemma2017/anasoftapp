@@ -16,8 +16,8 @@
             <DropShadow />
          </effect>
          <children>
-            <AnchorPane layoutX="130.0" layoutY="-14.0" prefHeight="50.0" prefWidth="1260.0"
-                        style="-fx-background-color: #263238;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+             <AnchorPane layoutX="130.0" layoutY="-14.0" prefHeight="50.0" prefWidth="1260.0"
+                         style="-fx-background-color: #263238;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="574.0" text="IBCR FORM" textFill="WHITE" AnchorPane.topAnchor="0.0">
                      <font>
@@ -26,66 +26,66 @@
                   </Label>
                </children>
             </AnchorPane>
-            <JFXTextField fx:id="IBCRTextField" alignment="CENTER" focusColor="#e45b05" labelFloat="true"
-                          layoutX="324.0" layoutY="522.0" prefHeight="35.0" prefWidth="540.0" promptText="IBCR">
+             <JFXTextField fx:id="IBCRTextField" alignment="CENTER" focusColor="#e45b05" labelFloat="true"
+                           layoutX="324.0" layoutY="522.0" prefHeight="35.0" prefWidth="540.0" promptText="IBCR">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="324.0" layoutY="560.0" onAction="#findIBCR" prefHeight="40.0" prefWidth="541.0"
-                       style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
+             <JFXButton layoutX="324.0" layoutY="560.0" onAction="#findIBCR" prefHeight="40.0" prefWidth="541.0"
+                        style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="totalBenefitOfSolarPvSystemTextField" focusColor="#e45b05" labelFloat="true"
-                          layoutX="104.0" layoutY="168.0" prefHeight="33.0" prefWidth="443.0"
-                          promptText="Total benefit of solar pv system">
+             <JFXTextField fx:id="totalBenefitOfSolarPvSystemTextField" focusColor="#e45b05" labelFloat="true"
+                           layoutX="104.0" layoutY="168.0" prefHeight="33.0" prefWidth="443.0"
+                           promptText="Total benefit of solar pv system">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="104.0" layoutY="209.0" onAction="#findTotalBenefitOfPvSystem" prefHeight="40.0"
-                       prefWidth="445.0" style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
+             <JFXButton layoutX="104.0" layoutY="209.0" onAction="#findTotalBenefitOfPvSystem" prefHeight="40.0"
+                        prefWidth="445.0" style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="totalBenefitOfDieselGeneratorSystemTextField" focusColor="#e45b05" labelFloat="true"
-                          layoutX="103.0" layoutY="316.0" prefHeight="33.0" prefWidth="443.0"
-                          promptText="Total benefit of diesel generator system">
+             <JFXTextField fx:id="totalBenefitOfDieselGeneratorSystemTextField" focusColor="#e45b05" labelFloat="true"
+                           layoutX="103.0" layoutY="316.0" prefHeight="33.0" prefWidth="443.0"
+                           promptText="Total benefit of diesel generator system">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="103.0" layoutY="357.0" onAction="#findTotalBenefitOfDieselGenerator" prefHeight="40.0"
-                       prefWidth="445.0" style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
+             <JFXButton layoutX="103.0" layoutY="357.0" onAction="#findTotalBenefitOfDieselGenerator" prefHeight="40.0"
+                        prefWidth="445.0" style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="totalCostOfSolarPvSystemTextField" focusColor="#e45b05" labelFloat="true"
-                          layoutX="687.0" layoutY="168.0" prefHeight="33.0" prefWidth="443.0"
-                          promptText="Total cost of solar pv system">
+             <JFXTextField fx:id="totalCostOfSolarPvSystemTextField" focusColor="#e45b05" labelFloat="true"
+                           layoutX="687.0" layoutY="168.0" prefHeight="33.0" prefWidth="443.0"
+                           promptText="Total cost of solar pv system">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="687.0" layoutY="209.0" onAction="#findTotalCostOfPvSystem" prefHeight="40.0"
-                       prefWidth="445.0" style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
+             <JFXButton layoutX="687.0" layoutY="209.0" onAction="#findTotalCostOfPvSystem" prefHeight="40.0"
+                        prefWidth="445.0" style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="totalCostOfDieselGeneratorSystemTextField" focusColor="#e45b05" labelFloat="true"
-                          layoutX="686.0" layoutY="316.0" prefHeight="33.0" prefWidth="443.0"
-                          promptText="Total cost of diesel generator system">
+             <JFXTextField fx:id="totalCostOfDieselGeneratorSystemTextField" focusColor="#e45b05" labelFloat="true"
+                           layoutX="686.0" layoutY="316.0" prefHeight="33.0" prefWidth="443.0"
+                           promptText="Total cost of diesel generator system">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="686.0" layoutY="357.0" onAction="#findTotalCostOfDieselGenerator" prefHeight="40.0"
-                       prefWidth="445.0" style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
+             <JFXButton layoutX="686.0" layoutY="357.0" onAction="#findTotalCostOfDieselGenerator" prefHeight="40.0"
+                        prefWidth="445.0" style="-fx-background-color: #263238;" text="Find" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
@@ -94,7 +94,7 @@
       </AnchorPane>
       <JFXButton layoutX="41.0" layoutY="7.0" onAction="#backButton" text="Back" textFill="#033110">
          <graphic>
-            <FontAwesomeIconView fill="#263238" glyphName="ARROW_CIRCLE_ALT_LEFT" size="30.0"/>
+             <FontAwesomeIconView fill="#263238" glyphName="ARROW_CIRCLE_ALT_LEFT" size="30.0"/>
          </graphic>
          <font>
             <Font size="14.0" />

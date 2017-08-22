@@ -119,12 +119,12 @@ public class BcrPvController implements Initializable {
 
     @FXML
     void findBCRinPresentWorkValue(ActionEvent event) {
-        if(discountTextField.getText().isEmpty()){
+        if (discountTextField.getText().isEmpty()) {
             AlertsDialog.showErrorDialog("Enter a discount value");
             return;
         }
 
-        if(totalCostTextField.getText().isEmpty() || totalBenefitTextField.getText().isEmpty()){
+        if (totalCostTextField.getText().isEmpty() || totalBenefitTextField.getText().isEmpty()) {
             AlertsDialog.showErrorDialog("Find the total cost and total benefit first");
             return;
         }
@@ -134,17 +134,17 @@ public class BcrPvController implements Initializable {
             return;
         }
 
-        try{
+        try {
             discountRate = Double.parseDouble(discountTextField.getText());
-            projectsCost = Math.pow(totalCost/(1 + discountRate), year);
-            projectBenefit = Math.pow(totalBenefit/(1 + discountRate), year);
+            projectsCost = Math.pow(totalCost / (1 + discountRate), year);
+            projectBenefit = Math.pow(totalBenefit / (1 + discountRate), year);
 
             BCR = projectBenefit / projectsCost;
             bcrInPresentWorkValueTextField.setText(Double.toString(BCR));
 
             saveToFile();
 
-        }catch (Exception c){
+        } catch (Exception c) {
             AlertsDialog.showErrorDialog("You entered an invalid discount value");
         }
 
@@ -154,9 +154,9 @@ public class BcrPvController implements Initializable {
     @FXML
     void findTotalBenefit(ActionEvent event) {
 
-        if(governmentGrantTextField.getText().isEmpty() || governmentSubsidiesTextField.getText().isEmpty() ||
+        if (governmentGrantTextField.getText().isEmpty() || governmentSubsidiesTextField.getText().isEmpty() ||
                 investorFundTextField.getText().isEmpty() || productionRevenueTextField.getText().isEmpty() ||
-                incomeTaxBenefitTextField.getText().isEmpty()){
+                incomeTaxBenefitTextField.getText().isEmpty()) {
             AlertsDialog.showErrorDialog("Some fileds are empty\nCheck if all fields has been filled correctly");
             return;
         }
@@ -172,7 +172,7 @@ public class BcrPvController implements Initializable {
             totalBenefitTextField.setText(Double.toString(totalBenefit));
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             AlertsDialog.showErrorDialog("Some of the fields contains invalid characters.\n" +
                     "Only numbers are required in the inputs fields.");
         }
@@ -181,9 +181,9 @@ public class BcrPvController implements Initializable {
 
     @FXML
     void findTotalCost(ActionEvent event) {
-        if(productionTextField.getText().isEmpty() || adminExpensesTextField.getText().isEmpty() ||
+        if (productionTextField.getText().isEmpty() || adminExpensesTextField.getText().isEmpty() ||
                 researchTextField.getText().isEmpty() || maintenanceTextField.getText().isEmpty() ||
-                taxpaymentTextField.getText().isEmpty()){
+                taxpaymentTextField.getText().isEmpty()) {
             AlertsDialog.showErrorDialog("Some fileds are empty\nCheck if all fields has been filled correctly");
             return;
         }
@@ -197,7 +197,7 @@ public class BcrPvController implements Initializable {
 
             totalCost = productionCost + adminExpsenses + research + maintenance + taxPayment;
             totalCostTextField.setText(Double.toString(totalCost));
-        }catch (Exception e){
+        } catch (Exception e) {
             AlertsDialog.showErrorDialog("Some of the fields contains invalid characters.\n" +
                     "Only numbers are required in the inputs fields.");
         }
@@ -261,8 +261,9 @@ public class BcrPvController implements Initializable {
     private void readFromFile() {
         JSONObject bcr_pv = project.getBcr_pv();
 
-        try {
-            if (!bcr_pv.isEmpty()) {
+        if (!(bcr_pv.isEmpty() || bcr_pv == null)) {
+
+            try {
 
                 //yearsCombo.getSelectionModel().select((year = (int) diesel.get(YEAR)));
                 discountTextField.setText(Double.toString((double) bcr_pv.get(DISCOUNT)));
@@ -281,11 +282,11 @@ public class BcrPvController implements Initializable {
                 totalBenefitTextField.setText(Double.toString((double) bcr_pv.get(TOTAL_BENEFIT)));
 
                 bcrInPresentWorkValueTextField.setText(Double.toString((double) bcr_pv.get(TOTAL_BCR)));
-            }
-        } catch (Exception e) {
-            AlertsDialog.showErrorDialog("there was an error getting the saved data");
-        }
 
+            } catch (Exception e) {
+                AlertsDialog.showErrorDialog("there was an error getting the saved data");
+            }
+        }
     }
 
     public void setProject(Project project) {

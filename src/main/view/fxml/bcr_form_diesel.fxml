@@ -42,7 +42,7 @@
                                               AnchorPane.rightAnchor="0.0">
                                             <children>
                                                 <JFXTextField fx:id="productionTextField" focusColor="#570404"
-                                                              labelFloat="true" prefWidth="250.0"
+                                                              labelFloat="true" prefHeight="70.0" prefWidth="250.0"
                                                               promptText="Production">
                                                     <font>
                                                         <Font size="14.0"/>
@@ -50,28 +50,31 @@
                                                 </JFXTextField>
                                                 <JFXTextField fx:id="adminExpensesTextField" focusColor="#570404"
                                                               labelFloat="true" layoutX="10.0" layoutY="10.0"
-                                                              prefWidth="250.0" promptText="Administrative Expenses">
+                                                              prefHeight="70.0" prefWidth="250.0"
+                                                              promptText="Administrative Expenses">
                                                     <font>
                                                         <Font size="14.0"/>
                                                     </font>
                                                 </JFXTextField>
                                                 <JFXTextField fx:id="researchTextField" focusColor="#570404"
                                                               labelFloat="true" layoutX="10.0" layoutY="38.0"
-                                                              prefWidth="250.0" promptText="Research">
+                                                              prefHeight="70.0" prefWidth="250.0" promptText="Research">
                                                     <font>
                                                         <Font size="14.0"/>
                                                     </font>
                                                 </JFXTextField>
                                                 <JFXTextField fx:id="maintenanceTextField" focusColor="#570404"
                                                               labelFloat="true" layoutX="10.0" layoutY="66.0"
-                                                              prefWidth="250.0" promptText="Maintenance">
+                                                              prefHeight="70.0" prefWidth="250.0"
+                                                              promptText="Maintenance">
                                                     <font>
                                                         <Font size="14.0"/>
                                                     </font>
                                                 </JFXTextField>
                                                 <JFXTextField fx:id="taxpaymentTextField" focusColor="#570404"
                                                               labelFloat="true" layoutX="10.0" layoutY="94.0"
-                                                              prefWidth="250.0" promptText="Tax Payment">
+                                                              prefHeight="70.0" prefWidth="250.0"
+                                                              promptText="Tax Payment">
                                                     <font>
                                                         <Font size="14.0"/>
                                                     </font>
@@ -94,7 +97,7 @@
                                               AnchorPane.rightAnchor="0.0">
                                             <children>
                                                 <JFXTextField fx:id="governmentGrantTextField" focusColor="#570404"
-                                                              labelFloat="true" prefWidth="250.0"
+                                                              labelFloat="true" prefHeight="70.0" prefWidth="250.0"
                                                               promptText="Governemt grant">
                                                     <font>
                                                         <Font size="14.0"/>
@@ -102,28 +105,32 @@
                                                 </JFXTextField>
                                                 <JFXTextField fx:id="governmentSubsidiesTextField" focusColor="#570404"
                                                               labelFloat="true" layoutX="10.0" layoutY="10.0"
-                                                              prefWidth="250.0" promptText="Governement subsidies">
+                                                              prefHeight="70.0" prefWidth="250.0"
+                                                              promptText="Governement subsidies">
                                                     <font>
                                                         <Font size="14.0"/>
                                                     </font>
                                                 </JFXTextField>
                                                 <JFXTextField fx:id="investorFundTextField" focusColor="#570404"
                                                               labelFloat="true" layoutX="10.0" layoutY="38.0"
-                                                              prefWidth="250.0" promptText="Investors fund">
+                                                              prefHeight="70.0" prefWidth="250.0"
+                                                              promptText="Investors fund">
                                                     <font>
                                                         <Font size="14.0"/>
                                                     </font>
                                                 </JFXTextField>
                                                 <JFXTextField fx:id="productionRevenueTextField" focusColor="#570404"
                                                               labelFloat="true" layoutX="10.0" layoutY="66.0"
-                                                              prefWidth="250.0" promptText="Production revenue">
+                                                              prefHeight="70.0" prefWidth="250.0"
+                                                              promptText="Production revenue">
                                                     <font>
                                                         <Font size="14.0"/>
                                                     </font>
                                                 </JFXTextField>
                                                 <JFXTextField fx:id="incomeTaxBenefitTextField" focusColor="#570404"
                                                               labelFloat="true" layoutX="10.0" layoutY="94.0"
-                                                              prefWidth="250.0" promptText="Income tax benefit">
+                                                              prefHeight="70.0" prefWidth="250.0"
+                                                              promptText="Income tax benefit">
                                                     <font>
                                                         <Font size="14.0"/>
                                                     </font>

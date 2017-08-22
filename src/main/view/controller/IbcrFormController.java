@@ -141,15 +141,18 @@ public class IbcrFormController {
     public void readFromFile() {
         JSONObject ibcr = project.getIbcr();
 
-        if (ibcr == null || ibcr.isEmpty()) {
-            AlertsDialog.showErrorDialog("Error reading IBCR from file");
-        } else {
-            totalBenefitOfDieselGeneratorSystemTextField.setText(Double.toString((double) ibcr.get(TOTAL_BENEFIT_DIESEL)));
-            totalBenefitOfSolarPvSystemTextField.setText(Double.toString((double) ibcr.get(TOTAL_BENEFIT_PV)));
-            totalCostOfDieselGeneratorSystemTextField.setText(Double.toString((double) ibcr.get(TOTAL_COST_DIESEL)));
-            totalCostOfSolarPvSystemTextField.setText(Double.toString((double) ibcr.get(TOTAL_COST_PV)));
-            IBCRTextField.setText(Double.toString((double) ibcr.get(IBCR_VALUE)));
-        }
+        if (!(ibcr == null || ibcr.isEmpty())) {
 
+            try {
+                totalBenefitOfDieselGeneratorSystemTextField.setText(Double.toString((double) ibcr.get(TOTAL_BENEFIT_DIESEL)));
+                totalBenefitOfSolarPvSystemTextField.setText(Double.toString((double) ibcr.get(TOTAL_BENEFIT_PV)));
+                totalCostOfDieselGeneratorSystemTextField.setText(Double.toString((double) ibcr.get(TOTAL_COST_DIESEL)));
+                totalCostOfSolarPvSystemTextField.setText(Double.toString((double) ibcr.get(TOTAL_COST_PV)));
+                IBCRTextField.setText(Double.toString((double) ibcr.get(IBCR_VALUE)));
+            } catch (Exception e) {
+                AlertsDialog.showErrorDialog("Error reading IBCR from file");
+                return;
+            }
+        }
     }
 }

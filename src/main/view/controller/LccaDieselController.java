@@ -465,37 +465,40 @@ public class LccaDieselController implements Initializable{
 
         JSONObject lccaDiesel = project.getLcca_diesel();
 
-        try {
+        if (!(lccaDiesel == null || lccaDiesel.isEmpty())) {
 
-            generalEscalationRateTextField.setText(Double.toString((double) lccaDiesel.get(GENERAL_ESCALATION_RATE)));
-            fuelEscalationRateTextField.setText(Double.toString((double) lccaDiesel.get(FUEL_ESCALATION_RATE)));
-            discountRateTextField.setText(Double.toString((double) lccaDiesel.get(DISCOUNT_RATE)));
-            powerFactorTextField.setText(Double.toString((double) lccaDiesel.get(POWER_FACTOR)));
+            try {
+
+                generalEscalationRateTextField.setText(Double.toString((double) lccaDiesel.get(GENERAL_ESCALATION_RATE)));
+                fuelEscalationRateTextField.setText(Double.toString((double) lccaDiesel.get(FUEL_ESCALATION_RATE)));
+                discountRateTextField.setText(Double.toString((double) lccaDiesel.get(DISCOUNT_RATE)));
+                powerFactorTextField.setText(Double.toString((double) lccaDiesel.get(POWER_FACTOR)));
 //        yearsCombo
 
-            maxLoadTextField.setText(Double.toString((double) lccaDiesel.get(MAX_LOAD)));
-            generatorCapacityTextField.setText(Double.toString((double) lccaDiesel.get(GENERAL_ESCALATION_RATE)));
-            fuelConsumptionTextField.setText(Double.toString((double) lccaDiesel.get(FUEL_CONSUMPTION_PER_HR)));
+                maxLoadTextField.setText(Double.toString((double) lccaDiesel.get(MAX_LOAD)));
+                generatorCapacityTextField.setText(Double.toString((double) lccaDiesel.get(GENERAL_ESCALATION_RATE)));
+                fuelConsumptionTextField.setText(Double.toString((double) lccaDiesel.get(FUEL_CONSUMPTION_PER_HR)));
 
-            annualFuelCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_FUEL_COST)));
-            lifeFuelCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_FUEL_COST)));
-            annualServiceCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_SERVICE_COST)));
-            lifeServiceCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_SERVICE_COST)));
-            annualGeneratorReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_GENERATOR_REPLACEMENT_COST)));
-            lifeGeneratorReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_GENERATOR_SERVICE_COST)));
-            annualTopCyclinderCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_TOP_CYLINDER_REPLACEMENT_COST)));
-            lifeCylinderReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_TOP_CYLINDER_REPLACEMENT_COST)));
-            annualEngineReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_ENGINE_REPLACEMENT_COST)));
-            lifeEngineReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_ENGINE_REPLACEMENT_COST)));
+                annualFuelCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_FUEL_COST)));
+                lifeFuelCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_FUEL_COST)));
+                annualServiceCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_SERVICE_COST)));
+                lifeServiceCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_SERVICE_COST)));
+                annualGeneratorReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_GENERATOR_REPLACEMENT_COST)));
+                lifeGeneratorReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_GENERATOR_SERVICE_COST)));
+                annualTopCyclinderCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_TOP_CYLINDER_REPLACEMENT_COST)));
+                lifeCylinderReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_TOP_CYLINDER_REPLACEMENT_COST)));
+                annualEngineReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(ANNUAL_ENGINE_REPLACEMENT_COST)));
+                lifeEngineReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_ENGINE_REPLACEMENT_COST)));
 
-            totalLifeReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(TOTAL_LIFE_REPLACEMENT_COST)));
-            capitalCostTextField.setText(Double.toString((double) lccaDiesel.get(CAPITAL_COST)));
-            salvageValueTextField.setText(Double.toString((double) lccaDiesel.get(SALVAGE_VALUE)));
-            lifeSalvageValueTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_SALVAGE_VALUE)));
-            totalLCCAAnalysisOfAllComponentTextField.setText(Double.toString((double) lccaDiesel.get(TOTAL_LCCA)));
+                totalLifeReplacementCostTextField.setText(Double.toString((double) lccaDiesel.get(TOTAL_LIFE_REPLACEMENT_COST)));
+                capitalCostTextField.setText(Double.toString((double) lccaDiesel.get(CAPITAL_COST)));
+                salvageValueTextField.setText(Double.toString((double) lccaDiesel.get(SALVAGE_VALUE)));
+                lifeSalvageValueTextField.setText(Double.toString((double) lccaDiesel.get(LIFE_SALVAGE_VALUE)));
+                totalLCCAAnalysisOfAllComponentTextField.setText(Double.toString((double) lccaDiesel.get(TOTAL_LCCA)));
 
-        } catch (Exception e) {
-            AlertsDialog.showErrorDialog("there was an error getting the saved data");
+            } catch (Exception e) {
+                AlertsDialog.showErrorDialog("there was an error getting the saved data");
+            }
         }
     }
 

@@ -905,43 +905,45 @@ public class LccaPvController implements Initializable{
     private void readFromFile() {
         JSONObject lccaPv = project.getLcca_pv();
 
-        try {
+        if (!(lccaPv == null || lccaPv.isEmpty())) {
+            try {
 
-            wireEfficiencyTextField.setText(Double.toString((double) lccaPv.get(WIRE_EFFICIENCY)));
-            batteryEfficiencyTextField.setText(Double.toString((double) lccaPv.get(BATTERY_EFFICIENCY)));
-            powerEfficiencyTextField.setText(Double.toString((double) lccaPv.get(POWER_CONVERSION_EFFICIENCY)));
-            escalationRateTextField.setText(Double.toString((double) lccaPv.get(ESCALATION_RATE)));
-            discountRateTextField.setText(Double.toString((double) lccaPv.get(DISCOUNT_RATE)));
+                wireEfficiencyTextField.setText(Double.toString((double) lccaPv.get(WIRE_EFFICIENCY)));
+                batteryEfficiencyTextField.setText(Double.toString((double) lccaPv.get(BATTERY_EFFICIENCY)));
+                powerEfficiencyTextField.setText(Double.toString((double) lccaPv.get(POWER_CONVERSION_EFFICIENCY)));
+                escalationRateTextField.setText(Double.toString((double) lccaPv.get(ESCALATION_RATE)));
+                discountRateTextField.setText(Double.toString((double) lccaPv.get(DISCOUNT_RATE)));
 
-            peakSunValueTextField.setText(Double.toString((double) lccaPv.get(PEAK_SUN_VALUE)));
+                peakSunValueTextField.setText(Double.toString((double) lccaPv.get(PEAK_SUN_VALUE)));
 
-            totalLoadTextField.setText(Double.toString((double) lccaPv.get(TOTAL_LOAD)));
-            norminalSystemVoltageTextField.setText(Double.toString((double) lccaPv.get(NORMINAL_SYSTEM_VOLTAGE)));
+                totalLoadTextField.setText(Double.toString((double) lccaPv.get(TOTAL_LOAD)));
+                norminalSystemVoltageTextField.setText(Double.toString((double) lccaPv.get(NORMINAL_SYSTEM_VOLTAGE)));
 
-            moduleCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(MODULE_CAPACITY)));
-            batteryCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(BATTERY_NUMBER_CAPACITY)));
-            chargeControllerNumberTextField.setText(Double.toString((double) lccaPv.get(CHARGE_CONTROLLER_CAPACITY)));
-            inverterCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(INVERTER_NUMBER_CAPACITY)));
+                moduleCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(MODULE_CAPACITY)));
+                batteryCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(BATTERY_NUMBER_CAPACITY)));
+                chargeControllerNumberTextField.setText(Double.toString((double) lccaPv.get(CHARGE_CONTROLLER_CAPACITY)));
+                inverterCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(INVERTER_NUMBER_CAPACITY)));
 
-            capitalCostLCC.setText(Double.toString((double) lccaPv.get(CAPITAL_COST)));
-            operationAndMaintenanceLCC.setText(Double.toString((double) lccaPv.get(OPERATION_AND_MAINTENANCE)));
-            batteryReplacementLCCATextField.setText(Double.toString((double) lccaPv.get(BATTERY_REPLACEMENT)));
-            controllerReplacementLCCATextField.setText(Double.toString((double) lccaPv.get(CONTROLLER_REPLACEMENT)));
-            inverterReplacementCostInitialCostTextField.setText(Double.toString((double) lccaPv.get(INVERTER_REPLACEMENT)));
+                capitalCostLCC.setText(Double.toString((double) lccaPv.get(CAPITAL_COST)));
+                operationAndMaintenanceLCC.setText(Double.toString((double) lccaPv.get(OPERATION_AND_MAINTENANCE)));
+                batteryReplacementLCCATextField.setText(Double.toString((double) lccaPv.get(BATTERY_REPLACEMENT)));
+                controllerReplacementLCCATextField.setText(Double.toString((double) lccaPv.get(CONTROLLER_REPLACEMENT)));
+                inverterReplacementCostInitialCostTextField.setText(Double.toString((double) lccaPv.get(INVERTER_REPLACEMENT)));
 
 
-            //yearCombo
+                //yearCombo
 
-            totalReplacementCostInitialCostTextField.setText(Double.toString((double) lccaPv.get(TOTAL_REPLACEMENT_INITIAL_COST)));
-            totalReplacementLCCTextField.setText(Double.toString((double) lccaPv.get(TOTAL_REPLACEMENT_LCCA_COST)));
-            lccSalvageValueTextField.setText(Double.toString((double) lccaPv.get(LCC_SALVAGE_VALUE)));
-            totalLCCAOfAllComponentTextField.setText(Double.toString((double) lccaPv.get(TOTAL_LCCA)));
-            totalAmpHrLoadTextField.setText(Double.toString((double) lccaPv.get(TOTAL_AMPERE_HR_LOAD)));
-            correctedAmpHrLoadTextField.setText(Double.toString((double) lccaPv.get(CORRECTED_AMPERE_LOAD)));
-            designCurrentTextField.setText(Double.toString((double) lccaPv.get(DESIGN_CURRENT)));
+                totalReplacementCostInitialCostTextField.setText(Double.toString((double) lccaPv.get(TOTAL_REPLACEMENT_INITIAL_COST)));
+                totalReplacementLCCTextField.setText(Double.toString((double) lccaPv.get(TOTAL_REPLACEMENT_LCCA_COST)));
+                lccSalvageValueTextField.setText(Double.toString((double) lccaPv.get(LCC_SALVAGE_VALUE)));
+                totalLCCAOfAllComponentTextField.setText(Double.toString((double) lccaPv.get(TOTAL_LCCA)));
+                totalAmpHrLoadTextField.setText(Double.toString((double) lccaPv.get(TOTAL_AMPERE_HR_LOAD)));
+                correctedAmpHrLoadTextField.setText(Double.toString((double) lccaPv.get(CORRECTED_AMPERE_LOAD)));
+                designCurrentTextField.setText(Double.toString((double) lccaPv.get(DESIGN_CURRENT)));
 
-        } catch (Exception e) {
-            AlertsDialog.showErrorDialog("there was an error getting the saved data");
+            } catch (Exception e) {
+                AlertsDialog.showErrorDialog("there was an error getting the saved data");
+            }
         }
 
 
