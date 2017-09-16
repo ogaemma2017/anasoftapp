@@ -13,26 +13,28 @@ import main.model.Project;
 import main.view.utils.AlertsDialog;
 import org.json.simple.JSONObject;
 
+import java.math.RoundingMode;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 public class BcrDieselController implements Initializable {
 
-    public static final String GOVERNEMNT_GRANT = "government_grant";
-    public static final String GOVERNMENT_SUBSIDIES = "government_subsidies";
-    public static final String INVESTOR_FUND = "investor_fund";
-    public static final String PROUDCTION_REVENU = "production_revenue";
-    public static final String INCOME_TAX_BENEFIT = "income_tax_benefit";
-    public static final String TOTAL_BENEFIT = "total_benefit";
-    public static final String TOTAL_BCR = "bcr";
-    public static final String YEAR = "year";
-    public static final String DISCOUNT = "discount";
-    public static final String PRODUCTION_COST = "production";
-    public static final String ADMIN_EXPENSES = "admin_expenses";
-    public static final String RESEARCH = "research";
-    public static final String MAINTENANCE = "maintenance";
-    public static final String TAX_PAYMENT = "tax_payment";
-    public static final String TOTAL_COST = "total_cost";
+    public static String TOTAL_BCR = "bcr";
+    DecimalFormat df = new DecimalFormat("#.##");
+    private String GOVERNEMNT_GRANT = "government_grant";
+    private String GOVERNMENT_SUBSIDIES = "government_subsidies";
+    private String INVESTOR_FUND = "investor_fund";
+    private String PROUDCTION_REVENU = "production_revenue";
+    private String INCOME_TAX_BENEFIT = "income_tax_benefit";
+    private String TOTAL_BENEFIT = "total_benefit";
+    private String YEAR = "year";
+    private String DISCOUNT = "discount";
+    private String PRODUCTION_COST = "production";
+    private String ADMIN_EXPENSES = "admin_expenses";
+    private String RESEARCH = "research";
+    private String MAINTENANCE = "maintenance";
+    private String TAX_PAYMENT = "tax_payment";
 
     int year = 1;
     double discountRate = 0;
@@ -82,9 +84,14 @@ public class BcrDieselController implements Initializable {
     private double projectsCost = 0;
     private double projectBenefit = 0;
     private double BCR = 0;
+    private String TOTAL_COST = "total_cost";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+        df.setRoundingMode(RoundingMode.HALF_UP);
+
         ObservableList<Integer> years = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
                 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 27, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40);
         yearsCombo.setItems(years);
@@ -97,7 +104,7 @@ public class BcrDieselController implements Initializable {
 /*        JSONObject BCRDiesel = project.getBcr_diesel();
 
         BCR = (Double)BCRDiesel.get(TOTAL_BCR);
-        bcrInPresentWorkValueTextField.setText(Double.toString(BCR));*/
+        bcrInPresentWorkValueTextField.setText(df.format(BCR));*/
 
 
     }
@@ -126,12 +133,12 @@ public class BcrDieselController implements Initializable {
         }
 
         try {
-            discountRate = Double.parseDouble(discountTextField.getText());
-            projectsCost = Math.pow(totalCost / (1 + discountRate), year);
-            projectBenefit = Math.pow(totalBenefit / (1 + discountRate), year);
+            discountRate = Double.parseDouble(discountTextField.getText()) / 100;
+            projectsCost = totalCost / Math.pow((1 + discountRate), year);
+            projectBenefit = totalBenefit / Math.pow((1 + discountRate), year);
 
             BCR = projectBenefit / projectsCost;
-            bcrInPresentWorkValueTextField.setText(Double.toString(BCR));
+            bcrInPresentWorkValueTextField.setText(df.format(BCR));
 
             saveToFile();
 
@@ -160,7 +167,7 @@ public class BcrDieselController implements Initializable {
             incomeTaxBenefit = Double.parseDouble(incomeTaxBenefitTextField.getText());
 
             totalBenefit = governmentGrant + governmentSubsidies + investorFund + productionRevenue + incomeTaxBenefit;
-            totalBenefitTextField.setText(Double.toString(totalBenefit));
+            totalBenefitTextField.setText(df.format(totalBenefit));
 
 
         } catch (Exception e) {
@@ -187,7 +194,7 @@ public class BcrDieselController implements Initializable {
             taxPayment = Double.parseDouble(taxpaymentTextField.getText());
 
             totalCost = productionCost + adminExpsenses + research + maintenance + taxPayment;
-            totalCostTextField.setText(Double.toString(totalCost));
+            totalCostTextField.setText(df.format(totalCost));
         } catch (Exception e) {
             AlertsDialog.showErrorDialog("Some of the fields contains invalid characters.\n" +
                     "Only numbers are required in the inputs fields.");
@@ -255,22 +262,24 @@ public class BcrDieselController implements Initializable {
         if (!(bcr_diesel.isEmpty() || bcr_diesel == null)) {
             try {
                 //yearsCombo.getSelectionModel().select((year = (int) diesel.get(YEAR)));
-                discountTextField.setText(Double.toString((double) bcr_diesel.get(DISCOUNT)));
-                productionTextField.setText(Double.toString((double) bcr_diesel.get(PRODUCTION_COST)));
-                adminExpensesTextField.setText(Double.toString((double) bcr_diesel.get(ADMIN_EXPENSES)));
-                researchTextField.setText(Double.toString((double) bcr_diesel.get(RESEARCH)));
-                maintenanceTextField.setText(Double.toString((double) bcr_diesel.get(MAINTENANCE)));
-                taxpaymentTextField.setText(Double.toString((double) bcr_diesel.get(TAX_PAYMENT)));
-                totalCostTextField.setText(Double.toString((double) bcr_diesel.get(TOTAL_COST)));
+                discountTextField.setText(df.format(discountRate = (double) bcr_diesel.get(DISCOUNT)));
+                productionTextField.setText(df.format(productionCost = (double) bcr_diesel.get(PRODUCTION_COST)));
+                adminExpensesTextField.setText(df.format(adminExpsenses = (double) bcr_diesel.get(ADMIN_EXPENSES)));
+                researchTextField.setText(df.format(research = (double) bcr_diesel.get(RESEARCH)));
+                maintenanceTextField.setText(df.format(maintenance = (double) bcr_diesel.get(MAINTENANCE)));
+                taxpaymentTextField.setText(df.format(taxPayment = (double) bcr_diesel.get(TAX_PAYMENT)));
+                totalCostTextField.setText(df.format(totalCost = (double) bcr_diesel.get(TOTAL_COST)));
 
-                governmentGrantTextField.setText(Double.toString((double) bcr_diesel.get(GOVERNEMNT_GRANT)));
-                governmentSubsidiesTextField.setText(Double.toString((double) bcr_diesel.get(GOVERNMENT_SUBSIDIES)));
-                investorFundTextField.setText(Double.toString((double) bcr_diesel.get(INVESTOR_FUND)));
-                productionRevenueTextField.setText(Double.toString((double) bcr_diesel.get(PROUDCTION_REVENU)));
-                incomeTaxBenefitTextField.setText(Double.toString((double) bcr_diesel.get(INCOME_TAX_BENEFIT)));
-                totalBenefitTextField.setText(Double.toString((double) bcr_diesel.get(TOTAL_BENEFIT)));
+                governmentGrantTextField.setText(df.format(governmentGrant = (double) bcr_diesel.get(GOVERNEMNT_GRANT)));
+                governmentSubsidiesTextField.setText(df.format(governmentSubsidies = (double) bcr_diesel.get(GOVERNMENT_SUBSIDIES)));
+                investorFundTextField.setText(df.format(investorFund = (double) bcr_diesel.get(INVESTOR_FUND)));
+                productionRevenueTextField.setText(df.format(productionRevenue = (double) bcr_diesel.get(PROUDCTION_REVENU)));
+                incomeTaxBenefitTextField.setText(df.format(incomeTaxBenefit = (double) bcr_diesel.get(INCOME_TAX_BENEFIT)));
+                totalBenefitTextField.setText(df.format(totalBenefit = (double) bcr_diesel.get(TOTAL_BENEFIT)));
 
-                bcrInPresentWorkValueTextField.setText(Double.toString((double) bcr_diesel.get(TOTAL_BCR)));
+                bcrInPresentWorkValueTextField.setText(df.format((double) bcr_diesel.get(TOTAL_BCR)));
+
+
             } catch (Exception e) {
                 AlertsDialog.showErrorDialog("there was an error getting the saved data");
             }

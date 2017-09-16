@@ -19,9 +19,9 @@
          <children>
             <AnchorPane layoutX="130.0" layoutY="-14.0" prefHeight="50.0" prefWidth="1260.0" style="-fx-background-color: #270101;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label alignment="CENTER" layoutX="416.0" prefHeight="45.0" prefWidth="518.0"
-                         text="BCR OF SOLAR PV GENERATOR" textAlignment="CENTER" textFill="WHITE"
-                         AnchorPane.topAnchor="0.0">
+                   <Label alignment="CENTER" layoutX="416.0" prefHeight="45.0" prefWidth="518.0"
+                          text="BCR OF SOLAR PV GENERATOR" textAlignment="CENTER" textFill="WHITE"
+                          AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -128,7 +128,8 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="discountTextField" focusColor="#4d0707" labelFloat="true" layoutX="672.0" layoutY="70.0" prefWidth="250.0" promptText="Discount">
+             <JFXTextField fx:id="discountTextField" focusColor="#4d0707" labelFloat="true" layoutX="672.0"
+                           layoutY="70.0" prefWidth="250.0" promptText="Discount in percentage (%)">
                <font>
                   <Font size="14.0" />
                </font>
@@ -138,7 +139,9 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="bcrInPresentWorkValueTextField" alignment="CENTER" focusColor="#570404" labelFloat="true" layoutX="324.0" layoutY="522.0" prefHeight="35.0" prefWidth="540.0" promptText="BCR IN PRESENT WORK VALUE">
+             <JFXTextField fx:id="bcrInPresentWorkValueTextField" alignment="CENTER" focusColor="#570404"
+                           labelFloat="true" layoutX="324.0" layoutY="522.0" prefHeight="35.0" prefWidth="540.0"
+                           promptText="BCR IN PRESENT WORTH VALUE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -148,9 +151,9 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="yearsCombo" focusColor="#4d0707" labelFloat="true" layoutX="181.0" layoutY="70.0"
-                         onAction="#selectYear" prefHeight="30.0" prefWidth="167.0" promptText="Years"
-                         style="-fx-font-size: 14;"/>
+             <JFXComboBox fx:id="yearsCombo" focusColor="#4d0707" labelFloat="true" layoutX="181.0" layoutY="70.0"
+                          onAction="#selectYear" prefHeight="30.0" prefWidth="167.0" promptText="Years"
+                          style="-fx-font-size: 14;"/>
          </children>
       </AnchorPane>
       <JFXButton layoutX="41.0" layoutY="7.0" onAction="#backButton" text="Back" textFill="#033110">

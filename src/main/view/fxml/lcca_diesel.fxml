@@ -46,170 +46,250 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="maxLoadTextField" focusColor="#04571a" labelFloat="true" layoutX="60.0" layoutY="115.0" prefWidth="250.0" promptText="Max load">
+             <JFXTextField fx:id="maxLoadTextField" focusColor="#04571a" labelFloat="true" layoutX="60.0"
+                           layoutY="116.0" prefWidth="300.0" promptText="Max load">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXButton buttonType="RAISED" layoutX="359.0" layoutY="106.0" onAction="#findGeneratorCapacityFuelConsumption" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
+             <JFXButton buttonType="RAISED" layoutX="709.0" layoutY="164.0"
+                        onAction="#findGeneratorCapacityFuelConsumption" prefHeight="40.0" prefWidth="135.0"
+                        style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="generatorCapacityTextField" editable="false" focusColor="#04571a" labelFloat="true" layoutX="496.0" layoutY="116.0" prefWidth="250.0" promptText="Generator capacity">
+             <JFXTextField fx:id="generatorCapacityTextField" editable="false" focusColor="#04571a" labelFloat="true"
+                           layoutX="60.0" layoutY="171.0" prefWidth="300.0" promptText="Generator capacity">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="fuelConsumptionTextField" editable="false" focusColor="#04571a" labelFloat="true" layoutX="786.0" layoutY="116.0" prefWidth="250.0" promptText="Fuel consumption per hr">
+             <JFXTextField fx:id="fuelConsumptionTextField" editable="false" focusColor="#04571a" labelFloat="true"
+                           layoutX="390.0" layoutY="171.0" prefWidth="300.0" promptText="Fuel consumption per hr">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <AnchorPane layoutX="61.0" layoutY="248.0">
+             <AnchorPane layoutX="61.0" layoutY="231.0">
                <children>
-                  <JFXTextField fx:id="annualFuelCostTextField" editable="false" focusColor="#04571a" labelFloat="true" prefHeight="30.0" prefWidth="250.0" promptText="Annuel fuel lost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                   <JFXTextField fx:id="lifeFuelCostTextField" editable="false" focusColor="#04571a" labelFloat="true"
-                                 layoutX="307.0" prefHeight="30.0" prefWidth="250.0" promptText="Life fuel cost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXTextField fx:id="annualServiceCostTextField" focusColor="#04571a" labelFloat="true" layoutY="60.0" prefHeight="30.0" prefWidth="250.0" promptText="Annuel service cost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                   <JFXTextField fx:id="lifeServiceCostTextField" editable="false" focusColor="#04571a"
-                                 labelFloat="true" layoutX="307.0" layoutY="60.0" prefHeight="30.0" prefWidth="250.0"
-                                 promptText="Life service cost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="50.0" onAction="#findLifeServiceCost" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXTextField fx:id="annualGeneratorReplacementCostTextField" focusColor="#04571a" labelFloat="true" layoutY="120.0" prefHeight="30.0" prefWidth="250.0" promptText="Annual generator replacement cost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                   <JFXTextField fx:id="lifeGeneratorReplacementCostTextField" editable="false" focusColor="#04571a"
-                                 labelFloat="true" layoutX="307.0" layoutY="120.0" prefHeight="30.0" prefWidth="250.0"
-                                 promptText="Life generator replacement cost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="111.0" onAction="#findLifeGeneratorReplacementCost" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXTextField fx:id="annualTopCyclinderCostTextField" focusColor="#04571a" labelFloat="true" layoutY="180.0" prefHeight="30.0" prefWidth="250.0" promptText="Annual top cylinder cost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                   <JFXTextField fx:id="lifeCylinderReplacementCostTextField" editable="false" focusColor="#04571a"
-                                 labelFloat="true" layoutX="307.0" layoutY="180.0" prefHeight="30.0" prefWidth="250.0"
-                                 promptText="Life cylider replacement cost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="170.0" onAction="#findLifeCylinderReplacementCost" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXTextField fx:id="annualEngineReplacementCostTextField" focusColor="#04571a" labelFloat="true" layoutY="240.0" prefHeight="30.0" prefWidth="250.0" promptText="Annuel engine replacement cost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                   <JFXTextField fx:id="lifeEngineReplacementCostTextField" editable="false" focusColor="#04571a"
-                                 labelFloat="true" layoutX="307.0" layoutY="240.0" prefHeight="30.0" prefWidth="250.0"
-                                 promptText="life engine replacement cost">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="231.0" onAction="#findLifeEngineReplacementCost" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXTextField fx:id="capitalCostTextField" focusColor="#04571a" labelFloat="true" layoutY="-57.0" prefWidth="250.0" promptText="Capital cost">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="-9.0" onAction="#findLifeFuelCost" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
+                   <AnchorPane layoutY="57.0">
+                       <children>
+                           <JFXTextField fx:id="annualFuelCostTextField" editable="false" focusColor="#04571a"
+                                         labelFloat="true" prefHeight="30.0" prefWidth="250.0"
+                                         promptText="Annual fuel lost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXTextField fx:id="lifeFuelCostTextField" editable="false" focusColor="#04571a"
+                                         labelFloat="true" layoutX="307.0" prefHeight="30.0" prefWidth="250.0"
+                                         promptText="Life fuel cost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXTextField fx:id="annualServiceCostTextField" focusColor="#04571a" labelFloat="true"
+                                         layoutY="60.0" prefHeight="30.0" prefWidth="150.0"
+                                         promptText="Annual service cost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXTextField fx:id="lifeServiceCostTextField" editable="false" focusColor="#04571a"
+                                         labelFloat="true" layoutX="359.0" layoutY="60.0" prefHeight="30.0"
+                                         prefWidth="200.0" promptText="Life service cost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="50.0" onAction="#findLifeServiceCost"
+                                      prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;"
+                                      text="Find" textFill="WHITE">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXButton>
+                           <JFXTextField fx:id="annualGeneratorReplacementCostTextField" focusColor="#04571a"
+                                         labelFloat="true" layoutY="120.0" prefHeight="30.0" prefWidth="150.0"
+                                         promptText="Annual gen. replact. cost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXTextField fx:id="lifeGeneratorReplacementCostTextField" editable="false"
+                                         focusColor="#04571a" labelFloat="true" layoutX="360.0" layoutY="120.0"
+                                         prefHeight="30.0" prefWidth="200.0"
+                                         promptText="Life generator replacement cost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="111.0"
+                                      onAction="#findLifeGeneratorReplacementCost" prefHeight="40.0" prefWidth="124.0"
+                                      style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXButton>
+                           <JFXTextField fx:id="annualTopCyclinderCostTextField" focusColor="#04571a" labelFloat="true"
+                                         layoutY="180.0" prefHeight="30.0" prefWidth="150.0"
+                                         promptText="Annual top cylinder cost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXTextField fx:id="lifeCylinderReplacementCostTextField" editable="false"
+                                         focusColor="#04571a" labelFloat="true" layoutX="361.0" layoutY="180.0"
+                                         prefHeight="30.0" prefWidth="200.0" promptText="Life cylider replacement cost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="170.0"
+                                      onAction="#findLifeCylinderReplacementCost" prefHeight="40.0" prefWidth="124.0"
+                                      style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXButton>
+                           <JFXTextField fx:id="annualEngineReplacementCostTextField" focusColor="#04571a"
+                                         labelFloat="true" layoutY="240.0" prefHeight="30.0" prefWidth="150.0"
+                                         promptText="Annual engine repl. cost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXTextField fx:id="lifeEngineReplacementCostTextField" editable="false"
+                                         focusColor="#04571a" labelFloat="true" layoutX="359.0" layoutY="240.0"
+                                         prefHeight="30.0" prefWidth="200.0" promptText="life engine replacement cost">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="231.0"
+                                      onAction="#findLifeEngineReplacementCost" prefHeight="40.0" prefWidth="124.0"
+                                      style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXButton>
+                           <JFXTextField fx:id="capitalCostTextField" focusColor="#04571a" labelFloat="true"
+                                         layoutY="-57.0" prefHeight="27.0" prefWidth="559.0" promptText="Capital cost">
+                               <font>
+                                   <Font size="13.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="-9.0" onAction="#findLifeFuelCost"
+                                      prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;"
+                                      text="Find" textFill="WHITE">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXButton>
+                           <JFXTextField fx:id="noOfServiceTextField" focusColor="#04571a" labelFloat="true"
+                                         layoutX="178.0" layoutY="60.0" prefHeight="30.0" prefWidth="159.0"
+                                         promptText="No. of service">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXTextField fx:id="noOfGeneratorReplacementTextField" focusColor="#04571a"
+                                         labelFloat="true" layoutX="178.0" layoutY="122.0" prefHeight="30.0"
+                                         prefWidth="159.0" promptText="No. of gen. repl.">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXTextField fx:id="noOfCylinderReplacementTextField" focusColor="#04571a" labelFloat="true"
+                                         layoutX="179.0" layoutY="180.0" prefHeight="30.0" prefWidth="159.0"
+                                         promptText="No. of cylinder repl.">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                           <JFXTextField fx:id="noOfEngineOverhaulTextField" focusColor="#04571a" labelFloat="true"
+                                         layoutX="179.0" layoutY="238.0" prefHeight="30.0" prefWidth="159.0"
+                                         promptText="No. of engine overhaul">
+                               <font>
+                                   <Font size="14.0"/>
+                               </font>
+                           </JFXTextField>
+                       </children>
+                   </AnchorPane>
+                   <JFXTextField fx:id="totalLCCAAnalysisOfAllComponentTextField" editable="false" focusColor="#04571a"
+                                 labelFloat="true" layoutX="769.0" layoutY="245.0" prefHeight="35.0" prefWidth="395.0"
+                                 promptText="Total LCCA of all Components">
+                       <font>
+                           <Font name="System Bold" size="18.0"/>
+                       </font>
+                   </JFXTextField>
+                   <JFXButton buttonType="RAISED" layoutX="771.0" layoutY="288.0"
+                              onAction="#findTotalLCCAAnalysisOfAllComponent" prefHeight="40.0" prefWidth="392.0"
+                              style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
+                       <font>
+                           <Font name="System Bold" size="18.0"/>
+                       </font>
+                   </JFXButton>
+                   <JFXTextField fx:id="totalLifeReplacementCostTextField" editable="false" focusColor="#04571a"
+                                 labelFloat="true" layoutX="777.0" layoutY="27.0" prefHeight="30.0" prefWidth="250.0"
+                                 promptText="Total life replacement cost">
+                       <font>
+                           <Font name="System Bold Italic" size="14.0"/>
+                       </font>
+                   </JFXTextField>
+                   <JFXTextField fx:id="salvageValueTextField" editable="false" focusColor="#04571a" labelFloat="true"
+                                 layoutX="776.0" layoutY="85.0" prefHeight="30.0" prefWidth="250.0"
+                                 promptText="Salvage value">
+                       <font>
+                           <Font name="System Bold Italic" size="14.0"/>
+                       </font>
+                   </JFXTextField>
+                   <JFXTextField fx:id="lifeSalvageValueTextField" editable="false" focusColor="#04571a"
+                                 labelFloat="true" layoutX="776.0" layoutY="145.0" prefHeight="30.0" prefWidth="250.0"
+                                 promptText="Life Salvage Value">
+                       <font>
+                           <Font name="System Bold Italic" size="14.0"/>
+                       </font>
+                   </JFXTextField>
                </children>
-            </AnchorPane>
-             <JFXTextField fx:id="totalLCCAAnalysisOfAllComponentTextField" editable="false" focusColor="#04571a"
-                           labelFloat="true" layoutX="830.0" layoutY="436.0" prefHeight="35.0" prefWidth="395.0"
-                           promptText="Annual service cost">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXTextField>
-            <JFXButton buttonType="RAISED" layoutX="832.0" layoutY="479.0" onAction="#findTotalLCCAAnalysisOfAllComponent" prefHeight="40.0" prefWidth="392.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-             <JFXTextField fx:id="totalLifeReplacementCostTextField" editable="false" focusColor="#04571a"
-                           labelFloat="true" layoutX="838.0" layoutY="218.0" prefHeight="30.0" prefWidth="250.0"
-                           promptText="Total life replacement cost">
-               <font>
-                  <Font name="System Bold Italic" size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXButton buttonType="RAISED" layoutX="1094.0" layoutY="209.0" onAction="#findTotalReplacementCost" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
+             </AnchorPane>
+             <JFXButton buttonType="RAISED" layoutX="1094.0" layoutY="249.0" onAction="#findTotalReplacementCost"
+                        prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find"
+                        textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </JFXButton>
-             <JFXTextField fx:id="salvageValueTextField" editable="false" focusColor="#04571a" labelFloat="true"
-                           layoutX="837.0" layoutY="276.0" prefHeight="30.0" prefWidth="250.0"
-                           promptText="Salvage value">
+             <JFXButton buttonType="RAISED" layoutX="1093.0" layoutY="307.0" onAction="#findSalvageValue"
+                        prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find"
+                        textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
-            </JFXTextField>
-            <JFXButton buttonType="RAISED" layoutX="1093.0" layoutY="267.0" onAction="#findSalvageValue" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
-               <font>
-                  <Font name="System Bold Italic" size="14.0" />
-               </font>
-            </JFXButton>
-             <JFXTextField fx:id="lifeSalvageValueTextField" editable="false" focusColor="#04571a" labelFloat="true"
-                           layoutX="837.0" layoutY="336.0" prefHeight="30.0" prefWidth="250.0"
-                           promptText="Life Salvage Value">
-               <font>
-                  <Font name="System Bold Italic" size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXButton buttonType="RAISED" layoutX="1093.0" layoutY="327.0" onAction="#findLifeSalvageValue" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find" textFill="WHITE">
+             </JFXButton>
+             <JFXButton buttonType="RAISED" layoutX="1093.0" layoutY="367.0" onAction="#findLifeSalvageValue"
+                        prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #033110;" text="Find"
+                        textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </JFXButton>
-            <Separator layoutX="-39.0" layoutY="162.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-             <JFXComboBox fx:id="yearsCombo" labelFloat="true" layoutX="1072.0" layoutY="114.0" onAction="#selectYears"
-                          prefHeight="30.0" prefWidth="148.0" promptText="Years" style="-fx-font-size: 14;"/>
+             <Separator layoutY="213.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+             <JFXComboBox fx:id="yearsCombo" labelFloat="true" layoutX="1056.0" layoutY="114.0" onAction="#selectYears"
+                          prefHeight="30.0" prefWidth="164.0" promptText="Years" style="-fx-font-size: 14;"/>
+             <JFXTextField fx:id="averageOperatingHourTextField" focusColor="#04571a" labelFloat="true" layoutX="388.0"
+                           layoutY="116.0" prefWidth="300.0" promptText="Average operating hour">
+                 <font>
+                     <Font size="14.0"/>
+                 </font>
+             </JFXTextField>
+             <JFXTextField fx:id="PricePerLitreTextField" focusColor="#04571a" labelFloat="true" layoutX="716.0"
+                           layoutY="116.0" prefWidth="300.0" promptText="Price per litre">
+                 <font>
+                     <Font size="14.0"/>
+                 </font>
+             </JFXTextField>
          </children>
       </AnchorPane>
       <JFXButton layoutX="41.0" layoutY="7.0" onAction="#backButton" text="Back" textFill="#033110">

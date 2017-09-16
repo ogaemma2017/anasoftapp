@@ -138,7 +138,7 @@ public class AnalysisController implements Initializable {
         ObservableList<String> powerOption = FXCollections.observableArrayList(SOLAR_PV, DIESEL_GEN);
         powerOptionCombo.setItems(powerOption);
 
-        ObservableList<String> analysisType = FXCollections.observableArrayList("BCR", "IBCR", "LCCA");
+        ObservableList<String> analysisType = FXCollections.observableArrayList("BCR", "LCCA");
         analysisTypeCombo.setItems(analysisType);
 
     }

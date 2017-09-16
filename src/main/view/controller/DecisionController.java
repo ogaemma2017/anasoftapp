@@ -27,14 +27,13 @@ public class DecisionController {
     void findTheMostBeneficialOption(ActionEvent event) {
         bcrPv = (double) project.getBcr_pv().get(BcrPvController.TOTAL_BCR);
         bcrDiesel = (double) project.getBcr_diesel().get(BcrDieselController.TOTAL_BCR);
-        ibcr = (double) project.getIbcr().get(IbcrFormController.IBCR_VALUE);
 
         if (bcrPv > bcrDiesel) {
-            theMostBeneficialOptionTextField.setText("PV system is more beneficial than Diesel system " +
-                    "by a ration 2:1 and a factor of " + Double.toString(ibcr));
+            theMostBeneficialOptionTextField.setText("Solar PV system is more beneficial to invest in than Diesel system " +
+                    "\nBecause its benefit to cost ratio is higher than that of diesel opiton");
         } else if (bcrPv < bcrDiesel) {
-            theMostBeneficialOptionTextField.setText("Diesel generator system is more beneficial than PV system " +
-                    "by a ration 2:1 and a factor of " + Double.toString(ibcr));
+            theMostBeneficialOptionTextField.setText("Diesel generator is more beneficial to invest in than solar PV system " +
+                    "\nBecause its benefit to cost ratio is higher than that of solar PV option");
         } else {
             theMostBeneficialOptionTextField.setText("Both systems are the same");
         }

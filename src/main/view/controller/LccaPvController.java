@@ -13,7 +13,9 @@ import main.model.Project;
 import main.view.utils.AlertsDialog;
 import org.json.simple.JSONObject;
 
+import java.math.RoundingMode;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 public class LccaPvController implements Initializable{
@@ -142,8 +144,8 @@ public class LccaPvController implements Initializable{
     private double wireEfficiency = 0.98;
     private double batteryEfficiency = 0.9;
     private double powerConversionEfficiency = 0.9;
-    private double escalationRate = 13.71;
-    private double discountRate = 16.9;
+    public static String TOTAL_LCCA = "total_lcca";
+    DecimalFormat df = new DecimalFormat("#.##");
 
     private double peakSunValue = 4.92;
 
@@ -173,21 +175,130 @@ public class LccaPvController implements Initializable{
     private double totalAmpereHrLoad = 0;
     private double correctedAmpHrLoad = 0;
     private double designCurrent = 0;
+    private double escalationRate = 0.169;
+    private double discountRate = 0.167;
+    private String YEARS = "years";
 
-    public static final String YEARS = "years";
+
+    @FXML
+    void selectYears(ActionEvent event) {
+        years = yearCombo.getSelectionModel().getSelectedItem();
+
+    }
+
+    private String WIRE_EFFICIENCY = "wire_efficiency";
+    private String BATTERY_EFFICIENCY = "battery_efficiency";
+    private String POWER_CONVERSION_EFFICIENCY = "power_conversion_efficiency";
+    //============================================DATA PERSISTENCE ==================================//
+    private String ESCALATION_RATE = "escalation_rate";
+    private String DISCOUNT_RATE = "discount_rate";
+    private String PEAK_SUN_VALUE = "peak_sun_value";
+    private String TOTAL_LOAD = "total_load";
+    private String NORMINAL_SYSTEM_VOLTAGE = "norminal_system_voltage";
+    private String MODULE_CAPACITY = "module_capacity";
+    private String BATTERY_NUMBER_CAPACITY = "battery_number_capacity";
+    private String CHARGE_CONTROLLER_CAPACITY = "charge_controller_capacity";
+    private String INVERTER_NUMBER_CAPACITY = "inverter_number_capacity";
+
+    public double getTotalDDC() {
+        double totalDDC = 0;
+
+        if (!acLoad1DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += acLoad1DdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!acLoad2DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += acLoad2DdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!acLoad3DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += acLoad3DdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!acLoad4DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += acLoad4DdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!acLoad5DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += acLoad5DdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad1DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += dcLoad1DdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad2DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += dcLoad2DdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad3DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += dcLoad3DdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad4DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += dcLoad4DdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad5DdcCombo.getSelectionModel().isEmpty())
+            totalDDC += dcLoad5DdcCombo.getSelectionModel().getSelectedItem();
+
+        return totalDDC;
+    }
+
+    public double getTotalWDC() {
+        double totalWDC = 0;
+
+        if (!acLoad1WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += acLoad1WdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!acLoad2WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += acLoad2WdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!acLoad3WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += acLoad3WdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!acLoad4WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += acLoad4WdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!acLoad5WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += acLoad5WdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad1WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += dcLoad1WdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad2WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += dcLoad2WdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad3WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += dcLoad3WdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad4WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += dcLoad4WdcCombo.getSelectionModel().getSelectedItem();
+
+        if (!dcLoad5WdcCombo.getSelectionModel().isEmpty())
+            totalWDC += dcLoad5WdcCombo.getSelectionModel().getSelectedItem();
+
+        return totalWDC;
+    }
+
+    private String CAPITAL_COST = "capital_cost";
+    private String OPERATION_AND_MAINTENANCE = "operation_and_maintenance";
+    private String BATTERY_REPLACEMENT = "battery_replacement";
+    private String INVERTER_REPLACEMENT = "inverter_replacement";
+    private String CONTROLLER_REPLACEMENT = "controller_replacement";
+    private String TOTAL_REPLACEMENT_INITIAL_COST = "total_replacement_initial_cost";
+    private String TOTAL_REPLACEMENT_LCCA_COST = "total_replacement_lcca_cost";
+    private String LCC_SALVAGE_VALUE = "lcc_salvage_value";
+    private String TOTAL_AMPERE_HR_LOAD = "total_ampere_hr_load";
+    private String CORRECTED_AMPERE_LOAD = "corrected_ampere_hr_load";
+    private String DESIGN_CURRENT = "design_current";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+        df.setRoundingMode(RoundingMode.HALF_UP);
+
         formulas = new Formulas();
 
-        wireEfficiencyTextField.setText(Double.toString(wireEfficiency));
-        batteryEfficiencyTextField.setText(Double.toString(batteryEfficiency));
-        powerEfficiencyTextField.setText(Double.toString(powerConversionEfficiency));
-        escalationRateTextField.setText(Double.toString(escalationRate));
-        discountRateTextField.setText(Double.toString(discountRate));
+        wireEfficiencyTextField.setText(df.format(wireEfficiency));
+        batteryEfficiencyTextField.setText(df.format(batteryEfficiency));
+        powerEfficiencyTextField.setText(df.format(powerConversionEfficiency));
+        escalationRateTextField.setText(df.format(escalationRate * 100));
+        discountRateTextField.setText(df.format(discountRate * 100));
 
-        peakSunValueTextField.setText(Double.toString(peakSunValue));
+        peakSunValueTextField.setText(df.format(peakSunValue));
 
         //Initialize combo boxes
         ObservableList<Integer> years = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
@@ -200,7 +311,7 @@ public class LccaPvController implements Initializable{
         "Udi", "Uzo-Uwani");
         locationCombo.setItems(locations);
         locationCombo.getSelectionModel().selectFirst();
-        peakSunValueTextField.setText(Double.toString(peakSunValue));
+        peakSunValueTextField.setText(df.format(peakSunValue));
 
         ObservableList<Integer> hours = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
                 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
@@ -234,22 +345,17 @@ public class LccaPvController implements Initializable{
 
     }
 
-
-    @FXML
-    void selectYears(ActionEvent event) {
-        years = yearCombo.getSelectionModel().getSelectedItem();
-
-    }
-
     @FXML
     void findCorrectedAmpHrLoad(ActionEvent event) {
+
         if(totalAmpHrLoadTextField.getText().isEmpty()){
             AlertsDialog.showErrorDialog("Find the total ampere hour load first");
             return;
         }
 
+
         correctedAmpHrLoad = formulas.correctedAmpereHrLoad(totalAmpereHrLoad, wireEfficiency, batteryEfficiency);
-        correctedAmpHrLoadTextField.setText(Double.toString(correctedAmpHrLoad));
+        correctedAmpHrLoadTextField.setText(df.format(correctedAmpHrLoad));
 
     }
 
@@ -261,7 +367,7 @@ public class LccaPvController implements Initializable{
         }
 
         designCurrent = formulas.calculateDesignCurrent(correctedAmpHrLoad, peakSunValue);
-        designCurrentTextField.setText(Double.toString(designCurrent));
+        designCurrentTextField.setText(df.format(designCurrent));
     }
 
     @FXML
@@ -273,7 +379,7 @@ public class LccaPvController implements Initializable{
         }
 
         LCCSalvageValue = formulas.calculateLCCOfSalvageValue(capitalCost, escalationRate, discountRate, years);
-        lccSalvageValueTextField.setText(Double.toString(LCCSalvageValue));
+        lccSalvageValueTextField.setText(df.format(LCCSalvageValue));
     }
 
     @FXML
@@ -291,15 +397,15 @@ public class LccaPvController implements Initializable{
         }
 
         try{
-            moduleCapacity = Double.parseDouble(moduleCapacityTextField.getText())/36;
-            batteryNumberCapacity = Double.parseDouble(batteryCapacityTextField.getText())/norminalSystemVoltage;
-            chargeControllerCapacity = Double.parseDouble(chargeControllerTextField.getText())/norminalSystemVoltage;
-            inverterNumberCapacity = Double.parseDouble(inverterCapacityTextField.getText())/norminalSystemVoltage;
+            moduleCapacity = Double.parseDouble(moduleCapacityTextField.getText());
+            batteryNumberCapacity = Double.parseDouble(batteryCapacityTextField.getText());
+            chargeControllerCapacity = Double.parseDouble(chargeControllerTextField.getText());
+            inverterNumberCapacity = Double.parseDouble(inverterCapacityTextField.getText());
 
-            moduleCapacityNumberTextField.setText(Double.toString(moduleCapacity));
-            batteryCapacityNumberTextField.setText(Double.toString(batteryNumberCapacity));
-            chargeControllerNumberTextField.setText(Double.toString(chargeControllerCapacity));
-            inverterCapacityNumberTextField.setText(Double.toString(inverterNumberCapacity));
+            moduleCapacityNumberTextField.setText(Integer.toString((int) (totalLoad / moduleCapacity)));
+            batteryCapacityNumberTextField.setText(Integer.toString((int) Math.ceil(norminalSystemVoltage / batteryNumberCapacity)));
+            chargeControllerNumberTextField.setText(Integer.toString((int) Math.ceil(norminalSystemVoltage / chargeControllerCapacity)));
+            inverterCapacityNumberTextField.setText(Integer.toString((int) Math.ceil(norminalSystemVoltage / inverterNumberCapacity)));
 
         }catch (Exception e){
             AlertsDialog.showErrorDialog("Some fields contains invalid values");
@@ -319,12 +425,12 @@ public class LccaPvController implements Initializable{
         }
 
         norminalSystemVoltage = formulas.calculateNorminalSystemVolatage(totalLoad);
-        norminalSystemVoltageTextField.setText(Double.toString(norminalSystemVoltage));
+        norminalSystemVoltageTextField.setText(df.format(norminalSystemVoltage));
 
-        moduleCapacityTextField.setText(Double.toString(norminalSystemVoltage));
-        inverterCapacityTextField.setText(Double.toString(norminalSystemVoltage));
-        chargeControllerTextField.setText(Double.toString(norminalSystemVoltage));
-        batteryCapacityTextField.setText(Double.toString(norminalSystemVoltage));
+        moduleCapacityTextField.setText(String.valueOf(270));
+        inverterCapacityTextField.setText(String.valueOf(12));
+        chargeControllerTextField.setText(String.valueOf(12));
+        batteryCapacityTextField.setText(String.valueOf(12));
 
     }
 
@@ -337,7 +443,7 @@ public class LccaPvController implements Initializable{
         }
 
         System.out.println(capitalCost);
-        salvageValueTextField.setText(Double.toString((0.2 * capitalCost)));
+        salvageValueTextField.setText(df.format((0.2 * capitalCost)));
 
     }
 
@@ -355,11 +461,9 @@ public class LccaPvController implements Initializable{
         totalAmpereHrLoad = formulas.calculateTotalAmpereHrLoad(totalLoad, totalDDC, totalWDC,
                 norminalSystemVoltage, powerConversionEfficiency);
 
-        totalAmpHrLoadTextField.setText(Double.toString(totalAmpereHrLoad));
+        totalAmpHrLoadTextField.setText(df.format(totalAmpereHrLoad));
 
     }
-
-    public static final String WIRE_EFFICIENCY = "wire_efficiency";
 
     @FXML
     void findTotalLoad(ActionEvent event) {
@@ -377,7 +481,7 @@ public class LccaPvController implements Initializable{
 
         totalLoad = formulas.calculateTotalLoadInKw(totalAcLaod, totalDCLoad);
 
-        totalLoadTextField.setText(Double.toString(totalLoad));
+        totalLoadTextField.setText(df.format(totalLoad));
 
     }
 
@@ -396,9 +500,12 @@ public class LccaPvController implements Initializable{
         try{
             double capitalcostInitialCost = Double.parseDouble(capitalCostInitialCostTextField.getText());
             double operationAndMaintenanceCostInitialCost = Double.parseDouble(operationAndMaintenanceInitialCostTextField.getText());
-            double inverterControllerCostInitialCost = Double.parseDouble(inverterReplacementCostInitialCostTextField.getText());
-            double batterReplacementCost = Double.parseDouble(batteryReplacementCostInitialCostTextField.getText());
-            double controllerReplacementCost = Double.parseDouble(controllerReplacementCostInitialCostTextField.getText());
+            double inverterControllerCostInitialCost = Double.parseDouble(inverterReplacementCostInitialCostTextField.getText()) * (Double.parseDouble(
+                    InverterReplacementNoOfReplacementTextField.getText()));
+            double batterReplacementCost = Double.parseDouble(batteryReplacementCostInitialCostTextField.getText()) * (Double.parseDouble(
+                    BatteryReplacementnoOfReplacementTextField.getText()));
+            double controllerReplacementCost = Double.parseDouble(controllerReplacementCostInitialCostTextField.getText()) * (Double.parseDouble(
+                    controllerReplacementNoOfReplacementTextField.getText()));
 
             operationAndMaintenance = formulas.calculateLCCOfMaintenance(operationAndMaintenanceCostInitialCost, escalationRate, discountRate, years);
             inverterReplacement = formulas.calculateInverterReplacement(inverterControllerCostInitialCost, escalationRate, discountRate, years);
@@ -412,14 +519,14 @@ public class LccaPvController implements Initializable{
                     batteryReplacement + controllerReplacement;
 
             capitalCost = capitalcostInitialCost;
-            capitalCostLCC.setText(Double.toString(capitalcostInitialCost));
-            operationAndMaintenanceLCC.setText(Double.toString(operationAndMaintenance));
-            batteryReplacementLCCATextField.setText(Double.toString(batteryReplacement));
-            InverterReplacementLCCATextField.setText(Double.toString(inverterReplacement));
-            controllerReplacementLCCATextField.setText(Double.toString(controllerReplacement));
+            capitalCostLCC.setText(df.format(capitalcostInitialCost));
+            operationAndMaintenanceLCC.setText(df.format(operationAndMaintenance));
+            batteryReplacementLCCATextField.setText(df.format(batteryReplacement));
+            InverterReplacementLCCATextField.setText(df.format(inverterReplacement));
+            controllerReplacementLCCATextField.setText(df.format(controllerReplacement));
 
-            totalReplacementCostInitialCostTextField.setText(Double.toString(totalReplacementInitialCost));
-            totalReplacementLCCTextField.setText(Double.toString(totalReplacementLCCACost));
+            totalReplacementCostInitialCostTextField.setText(df.format(totalReplacementInitialCost));
+            totalReplacementLCCTextField.setText(df.format(totalReplacementLCCACost));
 
         }catch (Exception e){
             AlertsDialog.showErrorDialog("Some fileds contains invalid characters\nFill all fields correctly and try again");
@@ -448,7 +555,8 @@ public class LccaPvController implements Initializable{
                 else
                     acLoad1WdcCombo.getSelectionModel().selectFirst();
 
-                totalAcLoad += (value * ddc * wdc);
+                totalAcLoad += value;
+                //totalAcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("AC load 1 text field contains an invalid number" +
@@ -476,7 +584,8 @@ public class LccaPvController implements Initializable{
                 else
                     acLoad2WdcCombo.getSelectionModel().selectFirst();
 
-                totalAcLoad += (value * ddc * wdc);
+                totalAcLoad += value;
+                //totalAcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("AC load 2 text field contains an invalid number" +
@@ -504,7 +613,8 @@ public class LccaPvController implements Initializable{
                 else
                     acLoad3WdcCombo.getSelectionModel().selectFirst();
 
-                totalAcLoad += (value * ddc * wdc);
+                totalAcLoad += value;
+                // totalAcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("AC load 3 text field contains an invalid number" +
@@ -532,7 +642,8 @@ public class LccaPvController implements Initializable{
                 else
                     acLoad4WdcCombo.getSelectionModel().selectFirst();
 
-                totalAcLoad += (value * ddc * wdc);
+                totalAcLoad += value;
+                //totalAcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("AC load 4 text field contains an invalid number" +
@@ -560,7 +671,8 @@ public class LccaPvController implements Initializable{
                 else
                     acLoad5WdcCombo.getSelectionModel().selectFirst();
 
-                totalAcLoad += (value * ddc * wdc);
+                totalAcLoad += value;
+                //totalAcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("AC load 5 text field contains an invalid number" +
@@ -594,7 +706,8 @@ public class LccaPvController implements Initializable{
                 else
                     dcLoad1WdcCombo.getSelectionModel().selectFirst();
 
-                totalDcLoad += (value * ddc * wdc);
+                totalDcLoad += value;
+                //totalDcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("DC load 1 text field contains an invalid number" +
@@ -622,7 +735,8 @@ public class LccaPvController implements Initializable{
                 else
                     dcLoad2WdcCombo.getSelectionModel().selectFirst();
 
-                totalDcLoad += (value * ddc * wdc);
+                totalDcLoad += value;
+                //totalDcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("DC load 2 text field contains an invalid number" +
@@ -650,7 +764,8 @@ public class LccaPvController implements Initializable{
                 else
                     dcLoad3WdcCombo.getSelectionModel().selectFirst();
 
-                totalDcLoad += (value * ddc * wdc);
+                totalDcLoad += value;
+                //totalDcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("DC load 3 text field contains an invalid number" +
@@ -678,7 +793,8 @@ public class LccaPvController implements Initializable{
                 else
                     dcLoad4WdcCombo.getSelectionModel().selectFirst();
 
-                totalDcLoad += (value * ddc * wdc);
+                totalDcLoad += value;
+                //totalDcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("DC load 4 text field contains an invalid number" +
@@ -706,7 +822,8 @@ public class LccaPvController implements Initializable{
                 else
                     dcLoad5WdcCombo.getSelectionModel().selectFirst();
 
-                totalDcLoad += (value * ddc * wdc);
+                totalDcLoad += value;
+                //totalDcLoad += (value * ddc * wdc);
 
             }catch (Exception e){
                 AlertsDialog.showErrorDialog("DC load 5 text field contains an invalid number" +
@@ -718,104 +835,6 @@ public class LccaPvController implements Initializable{
 
         return totalDcLoad;
     }
-
-    public double getTotalDDC() {
-        double totalDDC = 0;
-
-        if(!acLoad1DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += acLoad1DdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!acLoad2DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += acLoad2DdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!acLoad3DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += acLoad3DdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!acLoad4DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += acLoad4DdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!acLoad5DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += acLoad5DdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad1DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += dcLoad1DdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad2DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += dcLoad2DdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad3DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += dcLoad3DdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad4DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += dcLoad4DdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad5DdcCombo.getSelectionModel().isEmpty())
-            totalDDC += dcLoad5DdcCombo.getSelectionModel().getSelectedItem();
-
-        return totalDDC;
-    }
-
-    public double getTotalWDC() {
-        double totalWDC = 0;
-
-        if(!acLoad1WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += acLoad1WdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!acLoad2WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += acLoad2WdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!acLoad3WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += acLoad3WdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!acLoad4WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += acLoad4WdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!acLoad5WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += acLoad5WdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad1WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += dcLoad1WdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad2WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += dcLoad2WdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad3WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += dcLoad3WdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad4WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += dcLoad4WdcCombo.getSelectionModel().getSelectedItem();
-
-        if(!dcLoad5WdcCombo.getSelectionModel().isEmpty())
-            totalWDC += dcLoad5WdcCombo.getSelectionModel().getSelectedItem();
-
-        return totalWDC;
-    }
-
-    public static final String BATTERY_EFFICIENCY = "battery_efficiency";
-    public static final String POWER_CONVERSION_EFFICIENCY = "power_conversion_efficiency";
-
-    //============================================DATA PERSISTENCE ==================================//
-    public static final String ESCALATION_RATE = "escalation_rate";
-    public static final String DISCOUNT_RATE = "discount_rate";
-    public static final String PEAK_SUN_VALUE = "peak_sun_value";
-    public static final String TOTAL_LOAD = "total_load";
-    public static final String NORMINAL_SYSTEM_VOLTAGE = "norminal_system_voltage";
-    public static final String MODULE_CAPACITY = "module_capacity";
-    public static final String BATTERY_NUMBER_CAPACITY = "battery_number_capacity";
-    public static final String CHARGE_CONTROLLER_CAPACITY = "charge_controller_capacity";
-    public static final String INVERTER_NUMBER_CAPACITY = "inverter_number_capacity";
-    public static final String CAPITAL_COST = "capital_cost";
-    public static final String OPERATION_AND_MAINTENANCE = "operation_and_maintenance";
-    public static final String BATTERY_REPLACEMENT = "battery_replacement";
-    public static final String INVERTER_REPLACEMENT = "inverter_replacement";
-    public static final String CONTROLLER_REPLACEMENT = "controller_replacement";
-    public static final String TOTAL_REPLACEMENT_INITIAL_COST = "total_replacement_initial_cost";
-    public static final String TOTAL_REPLACEMENT_LCCA_COST = "total_replacement_lcca_cost";
-    public static final String LCC_SALVAGE_VALUE = "lcc_salvage_value";
-    public static final String TOTAL_LCCA = "total_lcca";
-    public static final String TOTAL_AMPERE_HR_LOAD = "total_ampere_hr_load";
-    public static final String CORRECTED_AMPERE_LOAD = "corrected_ampere_hr_load";
-    public static final String DESIGN_CURRENT = "design_current";
     Project project;
 
     @FXML
@@ -825,10 +844,10 @@ public class LccaPvController implements Initializable{
             return;
         }
 
-        totalLCCA = totalReplacementInitialCost + operationAndMaintenance + batteryReplacement + inverterReplacement +
-                controllerReplacement + LCCSalvageValue;
+        totalLCCA = capitalCost + (operationAndMaintenance + batteryReplacement + inverterReplacement +
+                controllerReplacement - LCCSalvageValue);
 
-        totalLCCAOfAllComponentTextField.setText(Double.toString(totalLCCA));
+        totalLCCAOfAllComponentTextField.setText(df.format(totalLCCA));
 
         saveToFile();
 
@@ -913,38 +932,38 @@ public class LccaPvController implements Initializable{
         if (!(lccaPv == null || lccaPv.isEmpty())) {
             try {
 
-                wireEfficiencyTextField.setText(Double.toString((double) lccaPv.get(WIRE_EFFICIENCY)));
-                batteryEfficiencyTextField.setText(Double.toString((double) lccaPv.get(BATTERY_EFFICIENCY)));
-                powerEfficiencyTextField.setText(Double.toString((double) lccaPv.get(POWER_CONVERSION_EFFICIENCY)));
-                escalationRateTextField.setText(Double.toString((double) lccaPv.get(ESCALATION_RATE)));
-                discountRateTextField.setText(Double.toString((double) lccaPv.get(DISCOUNT_RATE)));
+                wireEfficiencyTextField.setText(df.format(wireEfficiency = (double) lccaPv.get(WIRE_EFFICIENCY)));
+                batteryEfficiencyTextField.setText(df.format(batteryEfficiency = (double) lccaPv.get(BATTERY_EFFICIENCY)));
+                powerEfficiencyTextField.setText(df.format(powerConversionEfficiency = (double) lccaPv.get(POWER_CONVERSION_EFFICIENCY)));
+                escalationRateTextField.setText(df.format(escalationRate = (double) lccaPv.get(ESCALATION_RATE) * 100));
+                discountRateTextField.setText(df.format(discountRate = (double) lccaPv.get(DISCOUNT_RATE) * 100));
 
-                peakSunValueTextField.setText(Double.toString((double) lccaPv.get(PEAK_SUN_VALUE)));
+                peakSunValueTextField.setText(df.format(peakSunValue = (double) lccaPv.get(PEAK_SUN_VALUE)));
 
-                totalLoadTextField.setText(Double.toString((double) lccaPv.get(TOTAL_LOAD)));
-                norminalSystemVoltageTextField.setText(Double.toString((double) lccaPv.get(NORMINAL_SYSTEM_VOLTAGE)));
+                totalLoadTextField.setText(df.format(totalLoad = (double) lccaPv.get(TOTAL_LOAD)));
+                norminalSystemVoltageTextField.setText(df.format(norminalSystemVoltage = (double) lccaPv.get(NORMINAL_SYSTEM_VOLTAGE)));
 
-                moduleCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(MODULE_CAPACITY)));
-                batteryCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(BATTERY_NUMBER_CAPACITY)));
-                chargeControllerNumberTextField.setText(Double.toString((double) lccaPv.get(CHARGE_CONTROLLER_CAPACITY)));
-                inverterCapacityNumberTextField.setText(Double.toString((double) lccaPv.get(INVERTER_NUMBER_CAPACITY)));
+                moduleCapacityNumberTextField.setText(df.format(moduleCapacity = totalLoad / (double) lccaPv.get(MODULE_CAPACITY)));
+                batteryCapacityNumberTextField.setText(df.format(batteryNumberCapacity = (double) lccaPv.get(BATTERY_NUMBER_CAPACITY)));
+                chargeControllerNumberTextField.setText(df.format(chargeControllerCapacity = (double) lccaPv.get(CHARGE_CONTROLLER_CAPACITY)));
+                inverterCapacityNumberTextField.setText(df.format(inverterNumberCapacity = (double) lccaPv.get(INVERTER_NUMBER_CAPACITY)));
 
-                capitalCostLCC.setText(Double.toString((double) lccaPv.get(CAPITAL_COST)));
-                operationAndMaintenanceLCC.setText(Double.toString((double) lccaPv.get(OPERATION_AND_MAINTENANCE)));
-                batteryReplacementLCCATextField.setText(Double.toString((double) lccaPv.get(BATTERY_REPLACEMENT)));
-                controllerReplacementLCCATextField.setText(Double.toString((double) lccaPv.get(CONTROLLER_REPLACEMENT)));
-                inverterReplacementCostInitialCostTextField.setText(Double.toString((double) lccaPv.get(INVERTER_REPLACEMENT)));
+                capitalCostLCC.setText(df.format(capitalCost = (double) lccaPv.get(CAPITAL_COST)));
+                operationAndMaintenanceLCC.setText(df.format(operationAndMaintenance = (double) lccaPv.get(OPERATION_AND_MAINTENANCE)));
+                batteryReplacementLCCATextField.setText(df.format(batteryReplacement = (double) lccaPv.get(BATTERY_REPLACEMENT)));
+                controllerReplacementLCCATextField.setText(df.format(controllerReplacement = (double) lccaPv.get(CONTROLLER_REPLACEMENT)));
+                inverterReplacementCostInitialCostTextField.setText(df.format(inverterReplacement = (double) lccaPv.get(INVERTER_REPLACEMENT)));
 
 
                 //yearCombo
 
-                totalReplacementCostInitialCostTextField.setText(Double.toString((double) lccaPv.get(TOTAL_REPLACEMENT_INITIAL_COST)));
-                totalReplacementLCCTextField.setText(Double.toString((double) lccaPv.get(TOTAL_REPLACEMENT_LCCA_COST)));
-                lccSalvageValueTextField.setText(Double.toString((double) lccaPv.get(LCC_SALVAGE_VALUE)));
-                totalLCCAOfAllComponentTextField.setText(Double.toString((double) lccaPv.get(TOTAL_LCCA)));
-                totalAmpHrLoadTextField.setText(Double.toString((double) lccaPv.get(TOTAL_AMPERE_HR_LOAD)));
-                correctedAmpHrLoadTextField.setText(Double.toString((double) lccaPv.get(CORRECTED_AMPERE_LOAD)));
-                designCurrentTextField.setText(Double.toString((double) lccaPv.get(DESIGN_CURRENT)));
+                totalReplacementCostInitialCostTextField.setText(df.format(totalReplacementInitialCost = (double) lccaPv.get(TOTAL_REPLACEMENT_INITIAL_COST)));
+                totalReplacementLCCTextField.setText(df.format(totalReplacementLCCACost = (double) lccaPv.get(TOTAL_REPLACEMENT_LCCA_COST)));
+                lccSalvageValueTextField.setText(df.format(LCCSalvageValue = (double) lccaPv.get(LCC_SALVAGE_VALUE)));
+                totalLCCAOfAllComponentTextField.setText(df.format(totalLCCA = (double) lccaPv.get(TOTAL_LCCA)));
+                totalAmpHrLoadTextField.setText(df.format(totalAmpereHrLoad = (double) lccaPv.get(TOTAL_AMPERE_HR_LOAD)));
+                correctedAmpHrLoadTextField.setText(df.format(correctedAmpHrLoad = (double) lccaPv.get(CORRECTED_AMPERE_LOAD)));
+                designCurrentTextField.setText(df.format(designCurrent = (double) lccaPv.get(DESIGN_CURRENT)));
 
             } catch (Exception e) {
                 AlertsDialog.showErrorDialog("there was an error getting the saved data");
@@ -961,11 +980,15 @@ public class LccaPvController implements Initializable{
 
         public double calculateTotalAmpereHrLoad(double totalLoadInKw, double totalDDC, double totalWDC,
                                                  double norminalSystemVolatage, double powerCoversionEfficieny){
+
+            System.out.println(String.valueOf(totalLoadInKw + " " + totalDDC + " " + totalWDC + " " + 52) + " / " + (365 + " " + norminalSystemVolatage + " " + powerCoversionEfficieny));
+
             return (totalLoadInKw * totalDDC * totalWDC * 52) / (365 * norminalSystemVolatage * powerCoversionEfficieny);
         }
 
         public double correctedAmpereHrLoad(double totalAmpereHrLoad, double wireEfficiency, double batteryEfficiency){
-            return (totalAmpereHrLoad) / (wireEfficiency * batteryEfficiency);
+
+            return totalAmpereHrLoad / (wireEfficiency * batteryEfficiency);
         }
 
         public double calculateDesignCurrent(double correctedAmpHrLoad, double peakSunValue){

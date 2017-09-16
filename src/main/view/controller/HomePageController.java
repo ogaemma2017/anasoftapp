@@ -88,25 +88,17 @@ public class HomePageController implements Initializable {
     @FXML
     void decision(ActionEvent event) {
 
-        double bcrPv = -1;
-        double bcrDiesel = -1;
-        double ibcr = -1;
-        double lccaDiesel = -1;
-        double lccaPv = -1;
-
         try {
-            bcrPv = (double) project.getBcr_pv().get(BcrPvController.TOTAL_BCR);
-            bcrDiesel = (double) project.getBcr_diesel().get(BcrDieselController.TOTAL_BCR);
-            ibcr = (double) project.getIbcr().get(IbcrFormController.IBCR_VALUE);
-            lccaDiesel = (double) project.getLcca_diesel().get(LccaDieselController.TOTAL_LCCA);
-            lccaPv = (double) project.getLcca_pv().get(LccaPvController.TOTAL_LCCA);
+            project.getBcr_pv().get(BcrPvController.TOTAL_BCR);
+            project.getBcr_diesel().get(BcrDieselController.TOTAL_BCR);
+            project.getLcca_diesel().get(LccaDieselController.TOTAL_LCCA);
+            project.getLcca_pv().get(LccaPvController.TOTAL_LCCA);
         } catch (Exception e) {
             AlertsDialog.showErrorDialog("You cannot make a decision until you have performed:\n\n" +
                     "1.   BCR analysis for diesel generator\n" +
                     "2.   BCR analysis for PV system\n" +
-                    "3.   IBCR analysis\n" +
-                    "4.   LCCA analysis for diesel generator\n" +
-                    "5.   LCCA analysis for pv system\n" +
+                    "3.   LCCA analysis for diesel generator\n" +
+                    "4.   LCCA analysis for pv system\n" +
                     "\n" +
                     "Please complete the analysis and try again");
 

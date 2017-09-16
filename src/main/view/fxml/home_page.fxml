@@ -70,7 +70,7 @@
                         <JFXTextArea editable="false" layoutX="41.0" layoutY="101.0" prefHeight="519.0"
                                      prefWidth="426.0"
                                      style="-fx-border-color: grey; -fx-border-width: 5; -fx-border-radius: 10;"
-                                     text="This is a User Friendly Life Cycle Cost Analysis (LCCA) Software that enables users to carry out Benefit to Cost ratio (BCR), Incremental Benefit to Cost ratio (IBCR) and Life Cycle Cost Analysis (LCCA) of two power generation options. Solar Photovoltaic and Diesel Generator systems.&#10;&#10;This application is simply an analysis made easytool needed for easy and rapid decision making regarding the two power generation alternatives. "
+                                     text="This is a user friendly Cost Analysis&#10;Software that enables users to carry out Benefit to Cost ratio (BCR) and Life Cycle Cost Analysis (LCCA) of two power generation options. Solar Photovoltaic and Diesel Generator systems.&#10;&#10;This application is simply an analysis made easytool needed for easy and rapid decision making regarding the two power generation alternatives. "
                                      wrapText="true">
                             <font>
                                 <Font size="22.0"/>
